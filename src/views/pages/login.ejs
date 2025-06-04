@@ -11,6 +11,32 @@
     <body>
         <%- include('../common/navigation.ejs') %>
         <main>
+        <form method="POST" id="form">
+            <fieldset>
+                <legend>
+                    <%= login.title %>
+                    <i class="fa-regular fa-message"></i>
+                </legend>
+                <p><%= login.warning %></p>
+                <% if (typeof errorMessage !== 'undefined') { %>
+                    <p class="error"><%= errorMessage %></p>
+                <% } %>
+                <label>
+                    <%= login.identifier %>
+                </label>
+                <input id="identifier" type="text" name="identifier" placeholder="<%= login.identifierPlaceholder %>" required>
+                <label>
+                    <%= login.password %>
+                </label>
+                <input id="password" type="password" name="password" placeholder="<%= login.passwordPlaceholder %>" required>
+                <a href="/users/resetPassword"><%= login.forgotPassword %></a>
+                <a href="/users/signup"><%= login.account %></a>
+                <button id="submit">
+                    <%= login.submit %>
+                    <i class="fa-regular fa-paper-plane"></i>
+                </button>
+            </fieldset>
+        </form>
         </main>
         <%- include('../common/footer.ejs') %>
     </body>

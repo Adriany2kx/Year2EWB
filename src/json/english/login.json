@@ -1,1 +1,11 @@
-{}
+{
+    "title" : "Log In",
+    "warning" : "Required fields are marked with an asterisk (*)",
+    "identifier" : "Username or email (*):",
+    "identifierPlaceholder" : "Enter username or email",
+    "password" : "Password (*):",
+    "passwordPlaceholder" : "Enter password",
+    "forgotPassword" : "Forgot password?",
+    "account" : "Don't have an account?",
+    "submit" : "Log In"
+}

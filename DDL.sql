@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS User (
     Email VARCHAR(128) NOT NULL UNIQUE CONSTRAINT C_ValidEmail CHECK (Email REGEXP '^.+@.+\..+$'),
     DOB	DATE NULL,
     Password VARCHAR(128) NOT NULL,
-    CommunityPoints INT NOT NULL DEFAULT 0, -- Points gained from volunteering and contributing to the community that can be converted into vouchers
+    CredibilityPoints INT NOT NULL DEFAULT 0, -- Points gained from volunteering and contributing to the community that can be converted into vouchers
     Role ENUM('User', 'Employer', 'Moderator') DEFAULT 'User'
 );
 

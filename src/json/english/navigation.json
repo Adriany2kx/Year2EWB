@@ -2,5 +2,8 @@
     "mainAnchor1" : "Home",
     "mainAnchor2" : "Log In",
     "mainAnchor3" : "Sign Up",
-    "mainAnchor4" : "Log out"
+    "mainAnchor4" : "Jobs",
+    "mainAnchor5" : "Workshops",
+    "mainAnchor6" : "Volunteering",
+    "mainAnchor7" : "Profile"
 }
