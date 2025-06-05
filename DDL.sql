@@ -28,11 +28,11 @@ CREATE TABLE IF NOT EXISTS Post (
     TimeCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FOREIGN KEY (UserID) REFERENCES User (UserID) ON DELETE CASCADE
 );
-
+    
 -- Job table definition
 CREATE TABLE IF NOT EXISTS Job (
     PostID BIGINT PRIMARY KEY,
-    Salary DECIMAL(10,2) NOT NULL,
+    HourlyRate DECIMAL(10,2) NOT NULL,
     Contract ENUM ('Full-time', 'Part-time', 'Temporary') NOT NULL,
     WeeklyHours DECIMAL(10,2),
     FOREIGN KEY (PostID) REFERENCES Post (PostID) ON DELETE CASCADE
