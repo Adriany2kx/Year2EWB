@@ -1,6 +1,7 @@
 const userModel = require('../models/user-model');
 
 const bcrypt = require('bcrypt');
+const {check, validationResult} = require("express-validator");
 
 const login = require('../json/english/login.json');
 const signup = require('../json/english/signup.json');
@@ -35,12 +36,23 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.signup = async (req, res) => {
+exports.signup = [
+    check('username').notEmpty().isLength({ min: 3 }).withMessage('Invalid credentials: username must be at least 3 characters long'),
+    check('password').notEmpty().isLength({ min: 3 }).withMessage('Invalid credentials: password must be at least 3 characters long'),
+    async (req, res) => {
     const username = req.body.username;
     const forename = req.body.forename;
     const surname = req.body.surname;
     const email = req.body.email;
     const password = req.body.password;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+    const alerts = errors.array();
+    return res.render('../src/views/pages/signup', {
+                signup,
+                alerts: alerts
+            });
+    }
     try {
         const foundUsername = await userModel.findUser(username);
         const foundEmail = await userModel.findUser(email);
@@ -62,7 +74,7 @@ exports.signup = async (req, res) => {
             errorMessage: "Something went wrong, please try again"
         });
     }
-};
+}];
 
 // In a real system this would use a code from an email or a text
 exports.resetPassword = async (req, res) => {

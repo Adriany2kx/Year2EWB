@@ -21,6 +21,11 @@
                     <% if (typeof errorMessage !== 'undefined') { %>
                         <p class="error"><%= errorMessage %></p>
                     <% } %>
+                    <% if (typeof alerts !== 'undefined') { %>
+                        <% alerts.forEach(function(alert) { %>
+                            <p class="error"><%= alert.msg %></p>
+                        <% }); %>
+                    <% } %>
                     <label>
                         <%= signup.username %>
                     </label>
