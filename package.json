@@ -1,7 +1,7 @@
 {
   "name": "year2ewb",
   "version": "1.0.0",
-  "description": "",
+  "description": "A community board web application developed using Node.js and the Express.js framework",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -18,5 +18,14 @@
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "mysql2": "^3.14.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adriany2kx/Year2EWB.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Adriany2kx/Year2EWB/issues"
+  },
+  "homepage": "https://github.com/Adriany2kx/Year2EWB#readme"
 }
