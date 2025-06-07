@@ -1,11 +1,11 @@
 const db = require('../config/db');
 
-const createPost = async(userID, title, description, location, startDate, endDate, type) => {
+const createPost = async(userID, title, description, location, startDate, applyBy, type) => {
     try {
-        const result = await db.execute('INSERT INTO Post (UserID, Title, Description, Location, StartDate, EndDate, Type) VALUES (?, ?, ?, ?, ?, ?, ?)', 
-            [userID, title, description, location, startDate, endDate, type]
+        const [result] = await db.execute('INSERT INTO Post (UserID, Title, Description, Location, StartDate, ApplyBy, Type) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+            [userID, title, description, location, startDate, applyBy, type]
         );
-        return result;
+        return result.insertId;
     }
     catch (err) {
         throw err;

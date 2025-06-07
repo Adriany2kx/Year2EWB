@@ -10,13 +10,32 @@ const createJob = async(postID, hourlyRate, contract, weeklyHours) => {
     }
 };
 
-const fetchAll = async() => {
+const fetchFiltered = async(searchTerm, filterOption) => {
     try {
-        const [result] = await db.query('SELECT * FROM Job JOIN Post ON Job.PostID = Post.PostID WHERE Post.StartDate > CURDATE()');
-        if (result.length === 0) {
-            return null;
+        let baseQuery = `
+        SELECT Job.*, Post.*, User.Email
+        FROM Job
+        JOIN Post ON Job.PostID = Post.PostID
+        JOIN User ON Post.UserID = User.UserID
+        WHERE Post.ApplyBy >= CURDATE()
+        `;
+        const parameters = [];
+        if (searchTerm) {
+            baseQuery += `AND (Post.Title LIKE ? OR Post.Description LIKE ?)`;
+            parameters.push(`%${searchTerm}%`, `%${searchTerm}%`);
         }
-        return result;
+        if (filterOption && filterOption !== "Date posted" && filterOption !== "Hourly rate") {
+            baseQuery += `AND Job.Contract = ?`;
+            parameters.push(filterOption);
+        }
+        if (filterOption === "Date posted") {
+            baseQuery += `ORDER BY Post.TimeCreated DESC`;
+        } 
+        else if (filterOption === "Hourly rate") {
+            baseQuery += `ORDER BY Job.HourlyRate DESC`;
+        }
+        const [result] = await db.query(baseQuery, parameters);
+        return result.length ? result : null;
     }
     catch (err) {
         console.log(err);
@@ -26,5 +45,5 @@ const fetchAll = async() => {
 
 module.exports = {
     createJob,
-    fetchAll
+    fetchFiltered
 }

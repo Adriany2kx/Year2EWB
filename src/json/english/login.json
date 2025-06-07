@@ -1,11 +1,10 @@
 {
     "title" : "Log In",
-    "warning" : "Required fields are marked with an asterisk (*)",
-    "identifier" : "Username or email (*):",
+    "message" : "See what your local area has to offer",
     "identifierPlaceholder" : "Enter username or email",
-    "password" : "Password (*):",
     "passwordPlaceholder" : "Enter password",
     "forgotPassword" : "Forgot password?",
     "account" : "Don't have an account?",
+    "signup" : "Sign up",
     "submit" : "Log In"
 }

@@ -1,0 +1,96 @@
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+#form {
+  background: transparent;
+  width: 100%;
+  max-width: 30%;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: black;
+  font-weight: 600;
+}
+
+form p {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.error {
+  color: #c51f1f;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: none;
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #e5e7eb;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#submit {
+  width: 100%;
+  background-color: #2f6652;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: solid 1px #255944;
+}
+
+#submit:hover {
+  background-color: white;
+  color: #255944;
+}
+
+a {
+  display: block;
+  color: #10b981;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+a:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+#signup, #login {
+    margin-bottom: 0;
+}
+
+button:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}

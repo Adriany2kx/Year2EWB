@@ -1,17 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/jobs.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <title>Currently untitled</title>
-    </head>
-    <body>
-        <%- include('../common/navigation.ejs') %>
-        <main>
-        </main>
-        <%- include('../common/footer.ejs') %>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/jobs.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/post-job.js" defer></script>
+    <title>Currently untitled</title>
+</head>
+<body>
+    <%- include('../common/navigation.ejs') %>
+    <main>
+        <dialog id="postJob">
+            <form method="POST">
+                <legend><%= jobs.legend %></legend>
+                <div class="field">
+                    <label for="title"><%= jobs.title %></label>
+                    <input id="title" name="title" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="description"><%= jobs.description %></label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="location"><%= jobs.location %></label>
+                    <input id="location" name="location" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="startDate"><%= jobs.startDate %></label>
+                    <input id="startDate" name="startDate" type="date" required>
+                </div>
+                <div class="field">
+                    <label for="applyBy"><%= jobs.applyBy %></label>
+                    <input id="applyBy" name="applyBy" type="date" required>
+                </div>
+                <div class="field">
+                    <label for="hourlyRate"><%= jobs.hourlyRate %></label>
+                    <input id="hourlyRate" name="hourlyRate" type="number" step="0.01" required>
+                </div>
+                <div class="field">
+                    <label for="contract"><%= jobs.contract %></label>
+                    <select id="contract" name="contract" required>
+                        <option value="Full-time"><%= jobs.sortFullTime %></option>
+                        <option value="Part-time"><%= jobs.sortPartTime %></option>
+                        <option value="Temporary"><%= jobs.sortTemporary %></option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="weeklyHours"><%= jobs.weeklyHours %></label>
+                    <input id="weeklyHours" name="weeklyHours" type="number">
+                </div>
+                <button type="submit" id="post"><%= jobs.post %></button>
+                <button type="button" id="cancel"><%= jobs.cancel %></button>
+            </form>
+        </dialog>
+        <div id="job-section-wrapper">
+            <div id="search-container">
+                <form method="GET" id="searchForm">
+                    <input type="search" name="search" placeholder="<%= jobs.searchPlaceholder %>" value="<%= searchTerm || '' %>" oninput="this.form.submit()"/>
+                    <label><%= jobs.sortBy %></label>
+                    <select id="sort-dropdown" name="filter" onchange="this.form.submit()">
+                        <option value="Date posted" <%= filterOption === "Date posted" ? "selected" : "" %>><%= jobs.sortDatePosted %></option>
+                        <option value="Hourly rate" <%= filterOption === "Hourly rate" ? "selected" : "" %>><%= jobs.sortHourlyRate %></option>
+                        <option value="Full-time" <%= filterOption === "Full-time" ? "selected" : "" %>><%= jobs.sortFullTime %></option>
+                        <option value="Part-time" <%= filterOption === "Part-time" ? "selected" : "" %>><%= jobs.sortPartTime %></option>
+                    </select>
+                </form>
+                <button id="createJob" type="button"><%= jobs.createButton %></button>
+            </div>
+            <div id="job-container">
+                <% if (jobVacancies && jobVacancies.length > 0) { %>
+                    <% jobVacancies.forEach(job => { %>
+                        <a href="mailto:<%= encodeURIComponent(job.Email) %>" class="job-box" title="<%= jobs.emailTitle %>">
+                            <h3><%= job.Title %></h3>
+                            <p><%= job.Description.length > 100 ? job.Description.substring(0, 100) + '...' : job.Description %></p>
+                            <p><strong><%= jobs.cardLocation %>:</strong> <%= job.Location %></p>
+                            <p><strong><%= jobs.cardStartDate %>:</strong> <%= new Date(job.StartDate).toLocaleDateString() %></p>
+                            <p><strong><%= jobs.cardApplyBy %>:</strong> <%= new Date(job.ApplyBy).toLocaleDateString() %></p>
+                            <p><strong><%= jobs.cardRate %>:</strong> R<%= job.HourlyRate %>/hr</p>
+                            <p><strong><%= jobs.cardContract %>:</strong> <%= job.Contract %></p>
+                            <p><strong><%= jobs.cardWeeklyHours %>:</strong> <%= job.WeeklyHours || jobs.cardWeeklyHoursNA %></p>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <p><%= jobs.noJobsFound %></p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+    <%- include('../common/footer.ejs') %>
+</body>
 </html>

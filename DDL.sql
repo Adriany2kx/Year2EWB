@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Post (
     Description TEXT NOT NULL,
     Location VARCHAR(128),
     StartDate DATE,
-    EndDate DATE,
+    ApplyBy DATE,
     Type ENUM('Job', 'Volunteer', 'Workshop') NOT NULL,
     TimeCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FOREIGN KEY (UserID) REFERENCES User (UserID) ON DELETE CASCADE

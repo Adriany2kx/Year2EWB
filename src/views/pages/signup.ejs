@@ -17,7 +17,7 @@
                         <%= signup.title %>
                         <i class="fa-regular fa-message"></i>
                     </legend>
-                    <p><%= signup.warning %></p>
+                    <p><%= signup.message %></p>
                     <% if (typeof errorMessage !== 'undefined') { %>
                         <p class="error"><%= errorMessage %></p>
                     <% } %>
@@ -26,31 +26,17 @@
                             <p class="error"><%= alert.msg %></p>
                         <% }); %>
                     <% } %>
-                    <label>
-                        <%= signup.username %>
-                    </label>
                     <input id="username" type="text" name="username" placeholder="<%= signup.usernamePlaceholder %>" required>
-                    <label>
-                        <%= signup.forename %>
-                    </label>
                     <input id="forename" type="text" name="forename" placeholder="<%= signup.forenamePlaceholder %>" required>
-                    <label>
-                        <%= signup.surname %>
-                    </label>
                     <input id="surname" type="text" name="surname" placeholder="<%= signup.surnamePlaceholder %>" required>
-                    <label>
-                        <%= signup.email %>
-                    </label>
                     <input id="email" type="email" name="email" placeholder="<%= signup.emailPlaceholder %>" required>
-                    <label>
-                        <%= signup.password %>
-                    </label>
                     <input id="password" type="password" name="password" placeholder="<%= signup.passwordPlaceholder %>" required>
-                    <a href="/users/login"><%= signup.account %></a>
                     <button id="submit">
                         <%= signup.submit %>
                         <i class="fa-regular fa-paper-plane"></i>
                     </button>
+                    <p id="login"><%= signup.account %></p>
+                    <a href="/users/login"><%= signup.login %></a>
                 </fieldset>
             </form>
         </main>
