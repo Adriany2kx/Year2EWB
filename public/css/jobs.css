@@ -11,6 +11,18 @@ dialog {
   margin: auto;
 }
 
+#job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: normal;
+}
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -90,9 +102,18 @@ dialog::backdrop {
 }
 
 #job-section-wrapper {
-  max-width: 40%;
+  width: 100%;
+  max-width: 50%;
   margin: 0 auto;
   padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.job-box,
+#search-container,
+#search-container form {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #job-container {
@@ -133,6 +154,7 @@ form legend {
   gap: 1rem;
   margin: 2rem 0;
   width: 100%;
+  box-sizing: border-box;
   align-items: stretch;
 }
 
@@ -165,11 +187,19 @@ form legend {
   width: 100%;
 }
 
-@media (min-width: 700px) {
+@media (max-width: 600px) {
   #job-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  #search-container form {
+    flex-direction: column;
+  }
+
+  #job-section-wrapper {
+    max-width: 60%;
   }
 
   #search-container {

@@ -56,6 +56,10 @@
             </form>
         </dialog>
         <div id="job-section-wrapper">
+            <div id="job-header">
+                <h1>Jobs board</h1>
+                <button id="createJob" type="button"><%= jobs.createButton %></button>
+            </div>
             <div id="search-container">
                 <form method="GET" id="searchForm">
                     <input type="search" name="search" placeholder="<%= jobs.searchPlaceholder %>" value="<%= searchTerm || '' %>" oninput="this.form.submit()"/>
@@ -67,7 +71,6 @@
                         <option value="Part-time" <%= filterOption === "Part-time" ? "selected" : "" %>><%= jobs.sortPartTime %></option>
                     </select>
                 </form>
-                <button id="createJob" type="button"><%= jobs.createButton %></button>
             </div>
             <div id="job-container">
                 <% if (jobVacancies && jobVacancies.length > 0) { %>

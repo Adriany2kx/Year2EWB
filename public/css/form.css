@@ -94,3 +94,9 @@ button:not(:last-child) {
 a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  #form {
+     max-width: 60%;
+  }
+}
