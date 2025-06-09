@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 const login = require('../json/english/login.json');
 const signup = require('../json/english/signup.json');
+const profile = require('../json/english/profile.json');
 
 exports.login = async (req, res) => {
     const identifier = req.body.identifier;
@@ -101,4 +102,168 @@ exports.deleteUser = async(req, res) => {
     catch (err) {
         console.log(err);
     }
+};
+
+// Render profile page
+exports.getProfile = async (req, res) => {
+    if (!res.locals.loggedIn) {
+        return res.redirect('/users/login');
+    }
+    // Fetch user info from session or DB if needed
+    res.render('../src/views/pages/profile', {
+        user: res.locals.user,
+        profile: profile,
+        profileUpdateSuccess: false, // Always defined for EJS
+        profileUpdateMessage: '' // Always defined for EJS
+    });
+};
+
+// Update profile info
+exports.updateProfile = async (req, res) => {
+    if (!req.session.user || !req.session.user.UserID) {
+        // Session expired or user not logged in
+        return res.redirect('/users/login');
+    }
+    if (!req.body) {
+        // This should never happen if bodyParser is working, but handle gracefully
+        return res.render('../src/views/pages/profile', {
+            user: req.session.user || {},
+            profile: profile,
+            profileUpdateSuccess: false,
+            profileUpdateMessage: 'Form submission error: no data received.',
+            keepEditProfileModalOpen: true
+        });
+    }
+    try {
+        // Sanitize and trim input
+        const forename = req.body.forename ? req.body.forename.trim() : '';
+        const surname = req.body.surname ? req.body.surname.trim() : '';
+        const username = req.body.username ? req.body.username.trim() : '';
+        const dob = req.body.dob ? req.body.dob : null;
+        const email = req.body.email ? req.body.email.trim() : '';
+
+        // Only update fields that are not empty and have changed
+        const updateData = {};
+        if (forename && forename !== req.session.user.Forename) updateData.forename = forename;
+        if (surname && surname !== req.session.user.Surname) updateData.surname = surname;
+        if (username && username !== req.session.user.Username) updateData.username = username;
+        if (dob && dob !== (req.session.user.DOB ? req.session.user.DOB.toISOString ? req.session.user.DOB.toISOString().split('T')[0] : req.session.user.DOB : '')) updateData.dob = dob;
+        if (email && email !== req.session.user.Email) updateData.email = email;
+
+        if (Object.keys(updateData).length === 0) {
+            return res.render('../src/views/pages/profile', {
+                user: req.session.user || {},
+                profile: profile,
+                profileUpdateSuccess: false,
+                profileUpdateMessage: 'No changes to update.',
+                keepEditProfileModalOpen: true
+            });
+        }
+
+        // Debug: log the incoming form data and updateData
+        console.log('Profile update POST body:', req.body);
+        console.log('Profile updateData:', updateData);
+
+        await userModel.updateUser(req.session.user.UserID, updateData);
+        // Fetch updated user from DB and update session
+        const updatedUser = await userModel.findUser(updateData.username || req.session.user.Username);
+        req.session.user = updatedUser;
+        res.render('../src/views/pages/profile', {
+            user: req.session.user || {},
+            profile: profile,
+            profileUpdateSuccess: true,
+            profileUpdateMessage: 'Profile updated successfully.',
+            keepEditProfileModalOpen: true,
+            keepChangePasswordModalOpen: false,
+            keepNotificationModalOpen: false,
+            keepLanguageModalOpen: false
+        });
+    } catch (err) {
+        console.error('Profile update error:', err);
+        let errorMsg = 'Error updating profile.';
+        if (err && err.code === 'ER_DUP_ENTRY') {
+            if (err.sqlMessage && err.sqlMessage.includes('Username')) {
+                errorMsg = 'That username is already taken.';
+            } else if (err.sqlMessage && err.sqlMessage.includes('Email')) {
+                errorMsg = 'That email is already in use.';
+            }
+        }
+        res.render('../src/views/pages/profile', {
+            user: req.session.user || {},
+            profile: profile,
+            profileUpdateSuccess: false,
+            profileUpdateMessage: errorMsg,
+            keepEditProfileModalOpen: true
+        });
+    }
+};
+
+// Change password
+exports.changePassword = async (req, res) => {
+    const user = req.session.user;
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    if (!user) return res.redirect('/users/login');
+    if (newPassword !== confirmPassword) {
+        return res.render('../src/views/pages/profile', {
+            user,
+            profile,
+            errorMessage: 'Passwords do not match.',
+            profileUpdateSuccess: false,
+            profileUpdateMessage: '',
+            keepEditProfileModalOpen: false,
+            keepChangePasswordModalOpen: true,
+            keepNotificationModalOpen: false,
+            keepLanguageModalOpen: false
+        });
+    }
+    const match = await bcrypt.compare(currentPassword, user.Password);
+    if (!match) {
+        return res.render('../src/views/pages/profile', {
+            user,
+            profile,
+            errorMessage: 'Current password is incorrect.',
+            profileUpdateSuccess: false,
+            profileUpdateMessage: '',
+            keepEditProfileModalOpen: false,
+            keepChangePasswordModalOpen: true,
+            keepNotificationModalOpen: false,
+            keepLanguageModalOpen: false
+        });
+    }
+    const hash = await bcrypt.hash(newPassword, 10);
+    // await userModel.changePassword(user.Username, hash);
+    user.Password = hash;
+    req.session.user = user;
+    res.redirect('/profile');
+};
+
+// Update notification preferences
+exports.updateNotifications = async (req, res) => {
+    // Save notification preferences to DB or session
+    req.session.user.notifications = req.body;
+    res.render('../src/views/pages/profile', {
+        user: req.session.user || {},
+        profile: profile,
+        profileUpdateSuccess: true,
+        profileUpdateMessage: 'Notification preferences updated successfully.',
+        keepEditProfileModalOpen: false,
+        keepChangePasswordModalOpen: false,
+        keepNotificationModalOpen: true,
+        keepLanguageModalOpen: false
+    });
+};
+
+// Update language preference
+exports.updateLanguage = async (req, res) => {
+    req.session.user.language = req.body.language;
+    res.render('../src/views/pages/profile', {
+        user: req.session.user || {},
+        profile: profile,
+        profileUpdateSuccess: true,
+        profileUpdateMessage: 'Language preference updated successfully.',
+        keepEditProfileModalOpen: false,
+        keepChangePasswordModalOpen: false,
+        keepNotificationModalOpen: false,
+        keepLanguageModalOpen: true
+    });
 };

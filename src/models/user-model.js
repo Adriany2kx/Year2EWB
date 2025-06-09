@@ -39,9 +39,27 @@ const changePassword = async(identifier, password) => {
     }
 };
 
+// Update user info (add this function for demo, extend as needed)
+const updateUser = async (userID, data) => {
+    // Only update allowed fields
+    const fields = [];
+    const values = [];
+    if (data.forename) { fields.push('Forename = ?'); values.push(data.forename); }
+    if (data.surname) { fields.push('Surname = ?'); values.push(data.surname); }
+    if (data.username) { fields.push('Username = ?'); values.push(data.username); }
+    if (data.dob) { fields.push('DOB = ?'); values.push(data.dob); }
+    if (data.email) { fields.push('Email = ?'); values.push(data.email); }
+    if (fields.length === 0) return false;
+    const sql = `UPDATE User SET ${fields.join(', ')} WHERE UserID = ?`;
+    values.push(userID);
+    await db.execute(sql, values);
+    return true;
+};
+
 module.exports = {
     createUser,
     deleteUser,
     findUser,
-    changePassword
+    changePassword,
+    updateUser
 };

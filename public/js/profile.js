@@ -1,56 +1,68 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('changePasswordBtn');
-  const form = document.getElementById('changePasswordForm');
-  const menuButtons = document.querySelectorAll('.menu-buttons button');
+document.addEventListener('DOMContentLoaded', () => {
+  // ============================
+  // Utility Functions
+  // ============================
 
-  // Toggle 'selected' class for menu buttons and show/hide Change Password form
+  const showModal = (modal) => modal && (modal.style.display = 'flex');
+  const hideModal = (modal) => modal && (modal.style.display = 'none');
+  const setupModalToggle = (btn, modal, closeBtn) => {
+    if (btn && modal && closeBtn) {
+      btn.addEventListener('click', () => showModal(modal));
+      closeBtn.addEventListener('click', () => hideModal(modal));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) hideModal(modal);
+      });
+    }
+  };
+
+  // ============================
+  // Menu Button Logic
+  // ============================
+
+  const menuButtons = document.querySelectorAll('.menu-buttons button');
+  const changePasswordForm = document.getElementById('changePasswordForm');
+  const changePasswordBtn = document.getElementById('changePasswordBtn');
+
   menuButtons.forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
       menuButtons.forEach(btn => btn.classList.remove('selected'));
       this.classList.add('selected');
-      // Only show the form if "Change Password" is selected
-      if (this === btn && form) {
-        form.style.display = 'block';
-      } else if (form) {
-        form.style.display = 'none';
+
+      if (this === changePasswordBtn && changePasswordForm) {
+        changePasswordForm.style.display = 'block';
+      } else if (changePasswordForm) {
+        changePasswordForm.style.display = 'none';
       }
     });
   });
 
-  // Notification Preferences Modal logic
-  const notificationBtn = document.getElementById('notificationPreferencesBtn');
-  const notificationModal = document.getElementById('notificationModal');
-  const closeNotificationModal = document.getElementById('closeNotificationModal');
-  if (notificationBtn && notificationModal && closeNotificationModal) {
-    notificationBtn.addEventListener('click', function() {
-      notificationModal.style.display = 'flex';
-    });
-    closeNotificationModal.addEventListener('click', function() {
-      notificationModal.style.display = 'none';
-    });
-    // Close modal when clicking outside modal content
-    notificationModal.addEventListener('click', function(e) {
-      if (e.target === notificationModal) notificationModal.style.display = 'none';
-    });
-  }
+  // ============================
+  // Notification Preferences Modal
+  // ============================
 
-  // Select All / Deselect All for notification checkboxes
+  setupModalToggle(
+    document.getElementById('notificationPreferencesBtn'),
+    document.getElementById('notificationModal'),
+    document.getElementById('closeNotificationModal')
+  );
+
+  const notificationForm = document.getElementById('notificationForm');
   const selectAllBtn = document.getElementById('selectAllBtn');
   const deselectAllBtn = document.getElementById('deselectAllBtn');
-  const notificationForm = document.getElementById('notificationForm');
-  if (selectAllBtn && deselectAllBtn && notificationForm) {
-    selectAllBtn.addEventListener('click', function() {
-      notificationForm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
-    });
-    deselectAllBtn.addEventListener('click', function() {
-      notificationForm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    });
-  }
-
-  // Reset to Default (example: set some defaults)
   const resetDefaultsBtn = document.getElementById('resetDefaultsBtn');
-  if (resetDefaultsBtn && notificationForm) {
-    resetDefaultsBtn.addEventListener('click', function() {
+
+  if (notificationForm) {
+    const checkboxes = notificationForm.querySelectorAll('input[type="checkbox"]');
+
+    selectAllBtn?.addEventListener('click', () => {
+      checkboxes.forEach(cb => cb.checked = true);
+    });
+
+    deselectAllBtn?.addEventListener('click', () => {
+      checkboxes.forEach(cb => cb.checked = false);
+    });
+
+    resetDefaultsBtn?.addEventListener('click', () => {
       notificationForm.activity.checked = true;
       notificationForm.system.checked = true;
       notificationForm.promotions.checked = false;
@@ -68,30 +80,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Help / FAQ button redirect
-  const helpBtn = document.querySelector('.menu-buttons button:last-of-type');
-  if (helpBtn) {
-    helpBtn.addEventListener('click', function() {
-      window.location.href = '/faq';
-    });
-  }
+  // ============================
+  // Help / FAQ Redirect
+  // ============================
 
-  // Edit Profile Modal logic
-  const editProfileBtn = document.getElementById('editProfileBtn');
-  const editProfileModal = document.getElementById('editProfileModal');
-  const closeEditProfileModal = document.getElementById('closeEditProfileModal');
-  if (editProfileBtn && editProfileModal && closeEditProfileModal) {
-    editProfileBtn.addEventListener('click', function() {
-      editProfileModal.style.display = 'flex';
-    });
-    closeEditProfileModal.addEventListener('click', function() {
-      editProfileModal.style.display = 'none';
-    });
-    // Close modal when clicking outside modal content
-    editProfileModal.addEventListener('click', function(e) {
-      if (e.target === editProfileModal) editProfileModal.style.display = 'none';
-    });
-  }
-  
-  
+  const helpBtn = document.querySelector('.menu-buttons button:last-of-type');
+  helpBtn?.addEventListener('click', () => {
+    window.location.href = '/faq';
+  });
+
+  // ============================
+  // Edit Profile Modal
+  // ============================
+
+  setupModalToggle(
+    document.getElementById('editProfileBtn'),
+    document.getElementById('editProfileModal'),
+    document.getElementById('closeEditProfileModal')
+  );
+
+  // ============================
+  // Change Password Modal
+  // ============================
+
+  setupModalToggle(
+    document.getElementById('changePasswordBtn'),
+    document.getElementById('changePasswordModal'),
+    document.getElementById('closeChangePasswordModal')
+  );
+
+  // ============================
+  // Language Settings Modal
+  // ============================
+
+  setupModalToggle(
+    document.querySelector('.menu-buttons button:nth-child(3)'),
+    document.getElementById('languageModal'),
+    document.getElementById('closeLanguageModal')
+  );
+
+  // ============================
+  // Home Button Redirect
+  // ============================
+
+  const homeBtn = document.querySelector('.settings-btn');
+  homeBtn?.addEventListener('click', () => {
+    window.location.href = '/';
+  });
 });
