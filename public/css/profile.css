@@ -1,0 +1,428 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background-color: #f7f9fa;
+  color: #1d1d1f;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem 0.5rem 2.5rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  flex: 1;
+  text-align: left;
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.settings-btn i {
+  color: #2e6f57;
+  font-size: 2.2rem;
+  transition: color 0.2s, font-size 0.2s;
+}
+
+.settings-btn:active i,
+.settings-btn:hover i {
+  color: #22543D;
+}
+
+/* Responsive: make icon even larger on small screens */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  .settings-btn i {
+    font-size: 2.8rem;
+  }
+}
+
+.profile-pic {
+  margin: 1.2rem 0 0.5rem;
+}
+
+.initials {
+  background-color: #2e6f57;
+  color: white;
+  font-size: 2.2rem;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  background-color: #2e6f57;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.activity-overview {
+  margin-top: 1.2rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+.activity-box {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.07);
+  padding: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.activity-box a {
+  display: block;
+  text-align: right;
+  margin-top: 0.5rem;
+  color: #2e6f57;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 2rem 0 1.5rem 0;
+  width: 100%;
+  max-width: 480px;
+}
+
+.menu-buttons button {
+  padding: 0.85rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  width: 100%;
+}
+
+.menu-buttons button:hover,
+.menu-buttons button:active,
+.menu-buttons button.selected {
+  background-color: #22543D;
+  color: white;
+  border-color: #22543D;
+}
+
+.logout-btn {
+  background-color: #2e6f57;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  max-width: 480px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover,
+.logout-btn:active {
+  background-color: #22543D;
+}
+
+/* Extra mobile tweaks */
+@media (max-width: 400px) {
+  .container {
+    padding: 0.5rem 0.1rem 2rem 0.1rem;
+  }
+  .header h1 {
+    font-size: 1.1rem;
+  }
+  .settings-btn i {
+    font-size: 2.2rem;
+  }
+  .edit-btn, .logout-btn, .menu-buttons button {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+  .activity-box {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+}
+
+/* Modal overlay for edit profile */
+#editProfileModal.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+#editProfileModal.modal[style*="display: flex"] {
+  display: flex !important;
+}
+
+.profile-modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 95vw;
+  width: 400px;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #2e6f57;
+}
+
+.profile-modal-title, .modal-title {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #1d1d1f;
+  text-align: center;
+}
+
+.profile-avatar-upload {
+  margin-bottom: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border: 2px solid #2e6f57;
+}
+.profile-avatar-input {
+  display: block;
+  margin: 0.5rem auto;
+}
+.profile-avatar-remove {
+  background: none;
+  border: none;
+  color: #c00;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.profile-input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.profile-modal-divider {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.profile-modal-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #2e6f57;
+}
+
+.profile-linked-accounts {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.profile-linked-btn {
+  background: #f7f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  color: #2e6f57;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.profile-linked-btn:hover, .profile-linked-btn:active {
+  background: #2e6f57;
+  color: #fff;
+}
+
+.profile-modal-save {
+  width: 100%;
+  background: #2e6f57;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.profile-modal-save:hover, .profile-modal-save:active {
+  background: #22543D;
+}
+
+/* Notification Preferences Modal */
+#notificationModal.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+#notificationModal.modal[style*="display: flex"] {
+  display: flex !important;
+}
+
+.notification-modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 95vw;
+  width: 400px;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.notification-section-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #2e6f57;
+  margin-top: 1rem;
+}
+
+.notification-section {
+  margin-bottom: 0.5rem;
+}
+
+.notification-note {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.notification-btn {
+  background: #f7f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  color: #2e6f57;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.3rem;
+  transition: background 0.2s, color 0.2s;
+}
+.notification-btn:hover, .notification-btn:active {
+  background: #2e6f57;
+  color: #fff;
+}
+
+.notification-mute-select {
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.notification-modal-save {
+  width: 100%;
+  background: #2e6f57;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.notification-modal-save:hover, .notification-modal-save:active {
+  background: #22543D;
+}
+
+@media (max-width: 500px) {
+  .profile-modal-content {
+    width: 98vw;
+    padding: 1rem;
+  }
+  .profile-avatar-img {
+    width: 60px;
+    height: 60px;
+  }
+  .notification-modal-content {
+    width: 98vw;
+    padding: 1rem;
+  }
+}

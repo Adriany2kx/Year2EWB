@@ -1,7 +1,7 @@
 {
   "name": "year2ewb",
   "version": "1.0.0",
-  "description": "",
+  "description": "A community board web application developed using Node.js and the Express.js framework",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -20,5 +20,6 @@
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",
     "mysql2": "^3.14.1"
-  }
+  },
+  "keywords": []
 }
