@@ -83,5 +83,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    document.querySelectorAll('form[action^="/volunteering/delete/"]').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            if (!confirm('Delete this post?')) {
+                e.preventDefault();
+            }
+        });
+    });
+
+
     filterView('others');
 });

@@ -136,7 +136,7 @@
                 <p><strong>Points:</strong> <%= event.Points %></p>
         
                 <% if (event.CreatorID === user.UserID) { %>
-                    <form method="POST" action="/volunteering/delete/<%= event.PostID %>" onsubmit="return confirm('Delete this post?');">
+                    <form method="POST" action="/volunteering/delete/<%= event.PostID %>">
                         <button type="submit">Delete</button>
                     </form>
                 <% } else { %>
