@@ -3,13 +3,11 @@ const userModel = require('../models/user-model');
 const bcrypt = require('bcrypt');
 const {check, validationResult} = require("express-validator");
 
-const login = require('../json/english/login.json');
-const signup = require('../json/english/signup.json');
-const profile = require('../json/english/profile.json');
-
 exports.login = async (req, res) => {
     const identifier = req.body.identifier;
     const password = req.body.password;
+    const language = res.locals.language;
+    const login = require(`../json/${language}/login.json`);
     try {
         const user = await userModel.findUser(identifier);
         if(!user) {
@@ -47,6 +45,8 @@ exports.signup = [
     const email = req.body.email;
     const password = req.body.password;
     const errors = validationResult(req);
+    const language = res.locals.language;
+    const signup = require(`../json/${language}/signup.json`);
     if (!errors.isEmpty()) {
     const alerts = errors.array();
     return res.render('../src/views/pages/signup', {
@@ -82,6 +82,8 @@ exports.resetPassword = async (req, res) => {
     const identifier = req.body.identifier;
     const newPassword = req.body.newPassword;
     const newPasswordConfirmation = req.body.newPasswordConfirmation;
+    const language = res.locals.language;
+    const resetPassword = require(`../json/${language}/resetPassword.json`);
     try {
         if(newPassword !== newPasswordConfirmation) {
             res.render('../src/views/pages/reset-password', {
@@ -121,6 +123,8 @@ exports.getProfile = async (req, res) => {
     if (!res.locals.loggedIn) {
         return res.redirect('/users/login');
     }
+    const language = res.locals.language;
+    const profile = require(`../json/${language}/profile.json`);
     // Fetch user info from session or DB if needed
     res.render('../src/views/pages/profile', {
         user: res.locals.user,
@@ -136,6 +140,8 @@ exports.updateProfile = async (req, res) => {
         // Session expired or user not logged in
         return res.redirect('/users/login');
     }
+    const language = res.locals.language;
+    const profile = require(`../json/${language}/profile.json`);
     if (!req.body) {
         // This should never happen if bodyParser is working, but handle gracefully
         return res.render('../src/views/pages/profile', {
@@ -214,6 +220,8 @@ exports.updateProfile = async (req, res) => {
 exports.changePassword = async (req, res) => {
     const user = req.session.user;
     const { currentPassword, newPassword, confirmPassword } = req.body;
+    const language = res.locals.language;
+    const profile = require(`../json/${language}/profile.json`);
     if (!user) return res.redirect('/users/login');
     if (newPassword !== confirmPassword) {
         return res.render('../src/views/pages/profile', {
@@ -253,6 +261,8 @@ exports.changePassword = async (req, res) => {
 exports.updateNotifications = async (req, res) => {
     // Save notification preferences to DB or session
     req.session.user.notifications = req.body;
+    const language = res.locals.language;
+    const profile = require(`../json/${language}/profile.json`);
     res.render('../src/views/pages/profile', {
         user: req.session.user || {},
         profile: profile,
@@ -267,7 +277,9 @@ exports.updateNotifications = async (req, res) => {
 
 // Update language preference
 exports.updateLanguage = async (req, res) => {
-    req.session.user.language = req.body.language;
+    req.session.language = req.body.language;
+    const language = res.locals.language;
+    const profile = require(`../json/${language}/profile.json`);
     res.render('../src/views/pages/profile', {
         user: req.session.user || {},
         profile: profile,

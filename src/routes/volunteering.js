@@ -6,9 +6,14 @@ router.use((req, res, next) => {
     if (!res.locals.loggedIn) {
         return res.redirect('/users/login');
     }
-    next();
+    else {
+        const language = res.locals.language;
+        const volunteering = require(`../json/${language}/volunteering.json`);
+        res.render('../src/views/pages/volunteering', {
+            volunteering: volunteering
+        });
+    }
 });
-
 
 router.get('/', volunteeringController.renderVolunteeringPage);
 router.post('/join/:id', volunteeringController.handleJoinEvent);

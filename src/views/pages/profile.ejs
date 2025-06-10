@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= profile.pageTitle %></title>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 <body
 <% let modalToOpen = '';
@@ -18,18 +18,18 @@
 
     <div class="container">
         <div class="header">
-            <h1>Profile</h1>
+            <h1><%= profile.pageTitle %></h1>
             <button id="hamburger" class="nav-btn" aria-label="Open navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <nav id="dropdownNav" class="dropdown-nav">
                 <ul class="nav-list">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/jobs">Jobs</a></li>
-                    <li><a href="/workshops">Workshops</a></li>
-                    <li><a href="/volunteering">Volunteering</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/users/logout">Logout</a></li>
+                    <li><a href="/"><%= profile.navigationHome %></a></li>
+                    <li><a href="/jobs"><%= profile.navigationJobs %></a></li>
+                    <li><a href="/workshops"><%= profile.navigationWorkshops %></a></li>
+                    <li><a href="/volunteering"><%= profile.navigationVolunteering %></a></li>
+                    <li><a href="/profile"><%= profile.navigationProfile %></a></li>
+                    <li><a href="/users/logout"><%= profile.navigationLogout %></a></li>
                 </ul>
             </nav>
         </div>
@@ -42,51 +42,49 @@
             <% } %>
         </div>
 
-        <button id="editProfileBtn" class="edit-btn">edit your profile</button>
+        <button id="editProfileBtn" class="edit-btn"><%= profile.editProfileButton %></button>
 
         <div class="activity-overview">
-            <h2>Activity Overview</h2>
+            <h2><%= profile.activityOverviewTitle %></h2>
             <div class="activity-box">
-                <p>My Applications: "4 job applications submitted"</p>
-                <p>Volunteering Joined: "3 events joined"</p>
-                <p>Workshops Attended: "2 workshops completed"</p>
-                <a href="#">view all</a>
+                <p><%= profile.myApplications %></p>
+                <p><%= profile.volunteeringJoined %></p>
+                <p><%= profile.workshopsAttended %></p>
+                <a href="#"><%= profile.viewAll %></a>
             </div>
         </div>
 
         <div class="menu-buttons">
-            <button id="changePasswordBtn">Change Password</button>
-            <button id="notificationPreferencesBtn">Notification Preferences</button>
-            <button>Language Settings</button>
-            <button>Help / FAQ</button>
+            <button id="changePasswordBtn"><%= profile.menuChangePassword %></button>
+            <button id="notificationPreferencesBtn"><%= profile.menuNotificationPreferences %></button>
+            <button><%= profile.menuLanguageSettings %></button>
+            <button><%= profile.menuHelpFAQ %></button>
         </div>
 
-        <a href="/users/logout" class="logout-btn">Logout</a>
+        <a href="/users/logout" class="logout-btn"><%= profile.logoutButton %></a>
     </div>
 
     <div id="editProfileModal" class="modal">
         <div class="notification-modal-content">
             <button id="closeEditProfileModal" class="modal-close-btn">&times;</button>
-            <h2 class="modal-title">Edit Profile</h2>
+            <h2 class="modal-title"><%= profile.editProfileModalTitle %></h2>
             <% if (profileUpdateSuccess && keepEditProfileModalOpen) { %>
                 <div class="profile-update-message success"><%= profileUpdateMessage %></div>
             <% } %>
             <form action="/profile/update" method="POST">
-                <!-- 1. Basic Information -->
-                <label for="forename">First Name</label>
-                <input type="text" id="forename" name="forename" class="profile-input" value="<%= user.Forename %>">
-                <label for="surname">Last Name</label>
-                <input type="text" id="surname" name="surname" class="profile-input" value="<%= user.Surname %>">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" class="profile-input" value="<%= user.Username %>">
-                <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" name="dob" class="profile-input" value="<%= user.DOB ? new Date(user.DOB).toISOString().split('T')[0] : '' %>">
-                <hr class="profile-modal-divider">
-                <!-- 2. Contact Information -->
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="profile-input" value="<%= user.Email %>">
-                <small class="profile-note">If you change your email, you will need to verify it.</small>
-                <button type="submit" class="profile-modal-save">Save Changes</button>
+                <label for="forename"><%= profile.labelFirstName %></label>
+                <input type="text" id="forename" name="forename" class="profile-input" value="<%= user.Forename %>" />
+                <label for="surname"><%= profile.labelLastName %></label>
+                <input type="text" id="surname" name="surname" class="profile-input" value="<%= user.Surname %>" />
+                <label for="username"><%= profile.labelUsername %></label>
+                <input type="text" id="username" name="username" class="profile-input" value="<%= user.Username %>" />
+                <label for="dob"><%= profile.labelDOB %></label>
+                <input type="date" id="dob" name="dob" class="profile-input" value="<%= user.DOB ? new Date(user.DOB).toISOString().split('T')[0] : '' %>" />
+                <hr class="profile-modal-divider" />
+                <label for="email"><%= profile.labelEmail %></label>
+                <input type="email" id="email" name="email" class="profile-input" value="<%= user.Email %>" />
+                <small class="profile-note"><%= profile.emailNote %></small>
+                <button type="submit" class="profile-modal-save"><%= profile.saveChangesButton %></button>
             </form>
         </div>
     </div>
@@ -94,7 +92,7 @@
     <div id="changePasswordModal" class="modal">
         <div class="notification-modal-content">
             <button id="closeChangePasswordModal" class="modal-close-btn">&times;</button>
-            <h2 class="modal-title">Change Password</h2>
+            <h2 class="modal-title"><%= profile.changePasswordModalTitle %></h2>
             <% if (profileUpdateSuccess && keepChangePasswordModalOpen) { %>
                 <div class="profile-update-message success"><%= profileUpdateMessage %></div>
             <% } %>
@@ -102,13 +100,13 @@
                 <div class="profile-update-message error"><%= errorMessage %></div>
             <% } %>
             <form id="changePasswordForm" action="/profile/change-password" method="POST">
-                <label for="currentPassword">Current Password</label>
-                <input type="password" id="currentPassword" name="currentPassword" class="profile-input" required>
-                <label for="newPassword">New Password</label>
-                <input type="password" id="newPassword" name="newPassword" class="profile-input" required>
-                <label for="confirmPassword">Confirm New Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" class="profile-input" required>
-                <button type="submit" class="profile-modal-save">Update Password</button>
+                <label for="currentPassword"><%= profile.labelCurrentPassword %></label>
+                <input type="password" id="currentPassword" name="currentPassword" class="profile-input" required />
+                <label for="newPassword"><%= profile.labelNewPassword %></label>
+                <input type="password" id="newPassword" name="newPassword" class="profile-input" required />
+                <label for="confirmPassword"><%= profile.labelConfirmPassword %></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="profile-input" required />
+                <button type="submit" class="profile-modal-save"><%= profile.updatePasswordButton %></button>
             </form>
         </div>
     </div>
@@ -116,60 +114,58 @@
     <div id="notificationModal" class="modal">
         <div class="notification-modal-content">
             <button id="closeNotificationModal" class="modal-close-btn">&times;</button>
-            <h2 class="modal-title">Notification Preferences</h2>
+            <h2 class="modal-title"><%= profile.notificationModalTitle %></h2>
             <% if (profileUpdateSuccess && keepNotificationModalOpen) { %>
                 <div class="profile-update-message success"><%= profileUpdateMessage %></div>
             <% } %>
             <form id="notificationForm" action="/profile/notifications" method="POST">
-                <div class="notification-section">
-                    <p class="notification-note">Select which notifications you want to receive and how you want to receive them.</p>
-                    <div class="notification-group">
-                        <label><input type="checkbox" name="activity" checked> Activity Updates</label><br>
-                        <label><input type="checkbox" name="system" checked> System Announcements</label><br>
-                        <label><input type="checkbox" name="promotions"> Promotions & Offers</label><br>
-                        <label><input type="checkbox" name="reminders" checked> Reminders</label><br>
-                        <label><input type="checkbox" name="security" checked> Security Alerts</label><br>
-                    </div>
-                    <hr class="profile-modal-divider">
-                    <div class="notification-group">
-                        <label><input type="checkbox" name="email" checked> Email</label>
-                        <label><input type="checkbox" name="push"> Push Notification</label>
-                        <label><input type="checkbox" name="sms"> SMS</label>
-                        <label><input type="checkbox" name="inapp" checked> In-app</label>
-                    </div>
-                    <hr class="profile-modal-divider">
-                    <div class="notification-group">
-                        <label for="frequency">Notification Frequency:</label>
-                        <select id="frequency" name="frequency" class="profile-input">
-                            <option value="immediately">Immediately</option>
-                            <option value="hourly">Hourly</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                        </select>
-                    </div>
-                    <hr class="profile-modal-divider">
-                    <div class="notification-group">
-                        <label for="muteDuration">Mute Notifications:</label>
-                        <select id="muteDuration" name="muteDuration" class="profile-input">
-                            <option value="none">Don't mute</option>
-                            <option value="1h">1 hour</option>
-                            <option value="24h">24 hours</option>
-                            <option value="1w">1 week</option>
-                        </select>
-                    </div>
-                    <hr class="profile-modal-divider">
-                    <div class="notification-group">
-                        <label><input type="checkbox" name="sensitive"> Hide sensitive content in notifications</label><br>
-                        <label><input type="checkbox" name="mobilePush"> Enable mobile push notifications</label><br>
-                        <label><input type="checkbox" name="desktopPush"> Enable desktop push notifications</label><br>
-                    </div>
-                    <div style="margin-top: 1rem;">
-                        <button type="button" id="selectAllBtn" class="notification-btn">Select All</button>
-                        <button type="button" id="deselectAllBtn" class="notification-btn">Deselect All</button>
-                        <button type="button" id="resetDefaultsBtn" class="notification-btn">Reset to Default</button>
-                    </div>
+                <p class="notification-note"><%= profile.notificationNote %></p>
+                <div class="notification-group">
+                    <label><input type="checkbox" name="activity" checked /> <%= profile.notificationActivityUpdates %></label><br />
+                    <label><input type="checkbox" name="system" checked /> <%= profile.notificationSystemAnnouncements %></label><br />
+                    <label><input type="checkbox" name="promotions" /> <%= profile.notificationPromotions %></label><br />
+                    <label><input type="checkbox" name="reminders" checked /> <%= profile.notificationReminders %></label><br />
+                    <label><input type="checkbox" name="security" checked /> <%= profile.notificationSecurityAlerts %></label><br />
                 </div>
-                <button type="submit" class="notification-modal-save">Save Preferences</button>
+                <hr class="profile-modal-divider" />
+                <div class="notification-group">
+                    <label><input type="checkbox" name="email" checked /> <%= profile.deliveryEmail %></label>
+                    <label><input type="checkbox" name="push" /> <%= profile.deliveryPush %></label>
+                    <label><input type="checkbox" name="sms" /> <%= profile.deliverySMS %></label>
+                    <label><input type="checkbox" name="inapp" checked /> <%= profile.deliveryInApp %></label>
+                </div>
+                <hr class="profile-modal-divider" />
+                <div class="notification-group">
+                    <label for="frequency"><%= profile.notificationFrequencyLabel %></label>
+                    <select id="frequency" name="frequency" class="profile-input">
+                        <option value="immediately"><%= profile.notificationFrequencyImmediately %></option>
+                        <option value="hourly"><%= profile.notificationFrequencyHourly %></option>
+                        <option value="daily"><%= profile.notificationFrequencyDaily %></option>
+                        <option value="weekly"><%= profile.notificationFrequencyWeekly %></option>
+                    </select>
+                </div>
+                <hr class="profile-modal-divider" />
+                <div class="notification-group">
+                    <label for="muteDuration"><%= profile.muteNotificationsLabel %></label>
+                    <select id="muteDuration" name="muteDuration" class="profile-input">
+                        <option value="none"><%= profile.muteNone %></option>
+                        <option value="1h"><%= profile.mute1h %></option>
+                        <option value="24h"><%= profile.mute24h %></option>
+                        <option value="1w"><%= profile.mute1w %></option>
+                    </select>
+                </div>
+                <hr class="profile-modal-divider" />
+                <div class="notification-group">
+                    <label><input type="checkbox" name="sensitive" /> <%= profile.hideSensitiveContent %></label><br />
+                    <label><input type="checkbox" name="mobilePush" /> <%= profile.enableMobilePush %></label><br />
+                    <label><input type="checkbox" name="desktopPush" /> <%= profile.enableDesktopPush %></label><br />
+                </div>
+                <div style="margin-top: 1rem;">
+                    <button type="button" id="selectAllBtn" class="notification-btn"><%= profile.selectAllButton %></button>
+                    <button type="button" id="deselectAllBtn" class="notification-btn"><%= profile.deselectAllButton %></button>
+                    <button type="button" id="resetDefaultsBtn" class="notification-btn"><%= profile.resetDefaultsButton %></button>
+                </div>
+                <button type="submit" class="notification-modal-save"><%= profile.savePreferencesButton %></button>
             </form>
         </div>
     </div>
@@ -177,28 +173,20 @@
     <div id="languageModal" class="modal">
         <div class="notification-modal-content">
             <button id="closeLanguageModal" class="modal-close-btn">&times;</button>
-            <h2 class="modal-title">Language Settings</h2>
+            <h2 class="modal-title"><%= profile.languageModalTitle %></h2>
             <% if (profileUpdateSuccess && keepLanguageModalOpen) { %>
                 <div class="profile-update-message success"><%= profileUpdateMessage %></div>
             <% } %>
             <form id="languageForm" action="/profile/language" method="POST">
-                <div class="notification-section">
-                    <p class="notification-note">Select your preferred language for the application interface.</p>
-                    <select id="languageSelect" name="language" class="profile-input">
-                        <option value="en" selected>English</option>
-                        <option value="zu">isiZulu</option>
-                        <option value="fr">French</option>
-                        <option value="es">Spanish</option>
-                        <option value="de">German</option>
-                        <option value="zh">Chinese</option>
-                    </select>
-                </div>
-                <button type="submit" class="profile-modal-save">Save Language</button>
+                <p class="notification-note"><%= profile.languageNote %></p>
+                <select id="languageSelect" name="language" class="profile-input">
+                    <option value="english" <%= user.Language === 'english' ? 'selected' : '' %>><%= profile.languageEnglish %></option>
+                    <option value="isiZulu" <%= user.Language === 'isiZulu' ? 'selected' : '' %>><%= profile.languageIsiZulu %></option>
+                </select>
+                <button type="submit" class="profile-modal-save"><%= profile.saveLanguageButton %></button>
             </form>
         </div>
     </div>
-
-    <%- include('../common/footer') %>
 
     <script src="/js/profile.js"></script>
     <script src="/js/keepEditProfileModalOpen.js"></script>

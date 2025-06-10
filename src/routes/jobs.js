@@ -11,6 +11,8 @@ router.get('/', async (req, res) => {
     }
     const searchTerm = req.query.search || '';
     const filterOption = req.query.filter || '';
+    const language = res.locals.language;
+    const jobs = require(`../json/${language}/jobs.json`);
     try {
         const jobVacancies = await jobController.fetchFiltered(searchTerm, filterOption);
         res.render('../src/views/pages/jobs', {

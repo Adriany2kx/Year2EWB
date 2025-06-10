@@ -1,1 +1,7 @@
-{}
+{
+  "legend": "Choose your language",
+  "english": "English",
+  "isiZulu": "isiZulu",
+  "submit": "Apply",
+  "cancel": "Cancel"
+}

@@ -1,3 +1,23 @@
 <footer>
-    
+    <button id="changeLanguage"><i class="fa-solid fa-language"></i></button>
+    <dialog id="language">
+        <form method="GET" action="/language">
+            <legend><%= footer.legend %></legend>
+            <div class="field">
+                <label>
+                    <input type="radio" name="language" value="english" <%= language === 'english' ? 'checked' : '' %>>
+                    <%= footer.english %>
+                </label>
+            </div>
+            <div class="field">
+                <label>
+                    <input type="radio" name="language" value="isiZulu" <%= language === 'isiZulu' ? 'checked' : '' %>>
+                    <%= footer.isiZulu %>
+                </label>
+            </div>
+            <button type="submit"><%= footer.submit %></button>
+            <button type="button" id="cancel"><%= footer.cancel %></button>
+        </form>
+    </dialog>
+    <script src="/js/change-language.js" defer></script>
 </footer>

@@ -2,12 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user-controller');
 
-// Importing JSON files to access page content
-const login = require('../json/english/login.json');
-const signup = require('../json/english/signup.json');
-const resetPassword = require('../json/english/reset-password.json');
-
 router.get('/login', (req, res) => {
+    const language = res.locals.language;
+    const login = require(`../json/${language}/login.json`);
     res.render('../src/views/pages/login', {
         login: login
     });
@@ -23,12 +20,16 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
+    const language = res.locals.language;
+    const signup = require(`../json/${language}/signup.json`);
     res.render('../src/views/pages/signup', {
         signup: signup
     });
 });
 
 router.get('/resetPassword', (req, res) => {
+    const language = res.locals.language;
+    const resetPassword = require(`../json/${language}/reset-password.json`);
     res.render('../src/views/pages/reset-password', {
         resetPassword : resetPassword
     })

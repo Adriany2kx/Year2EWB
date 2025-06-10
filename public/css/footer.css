@@ -1,9 +1,106 @@
 footer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 2rem;
     align-items: center;
     height: 5rem;
     margin-top: 5rem;
     overflow: hidden;
     background-color: #2d6a4f;
+}
+
+#language {
+  z-index: 1000;
+  width: 20%;
+  min-width: 15%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+#language::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#language legend {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+}
+
+#language .field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#language .field label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#language input[type="radio"] {
+  margin: 0;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+#language button[type="submit"] {
+  background-color: #10b981;
+  color: white;
+  border: 1px solid #10b981;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+#language button[type="submit"]:hover {
+  background-color: white;
+  color: #10b981;
+}
+
+#language button[type="button"] {
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#language button[type="button"]:hover {
+  background-color: white;
+}
+
+#changeLanguage {
+  background-color: #2d6a4f;
+  border: none;
+  margin: 0;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+#changeLanguage:hover {
+  background-color: #1b4332;
 }

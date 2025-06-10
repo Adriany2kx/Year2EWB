@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/navigation.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <script src="/js/post-job.js" defer></script>
     <title>Currently untitled</title>
 </head>
@@ -57,7 +58,7 @@
         </dialog>
         <div id="job-section-wrapper">
             <div id="job-header">
-                <h1>Jobs board</h1>
+                <h1><%= jobs.headerTitle %></h1>
                 <button id="createJob" type="button"><%= jobs.createButton %></button>
             </div>
             <div id="search-container">
@@ -83,7 +84,7 @@
                             <p><strong><%= jobs.cardApplyBy %>:</strong> <%= new Date(job.ApplyBy).toLocaleDateString() %></p>
                             <p><strong><%= jobs.cardRate %>:</strong> R<%= job.HourlyRate %>/hr</p>
                             <p><strong><%= jobs.cardContract %>:</strong> <%= job.Contract %></p>
-                            <p><strong><%= jobs.cardWeeklyHours %>:</strong> <%= job.WeeklyHours || jobs.cardWeeklyHoursNA %></p>
+                            <p><strong><%= jobs.cardWeeklyHours %>:</strong> <%= job.WeeklyHours || jobs.cardWeeklyHoursNone %></p>
                         </a>
                     <% }) %>
                 <% } else { %>

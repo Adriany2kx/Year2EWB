@@ -10,16 +10,13 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 app.use(helmet());
 
-// By default all content will be in English
-const navigation = require('./src/json/english/navigation.json');
-const footer = require('./src/json/english/footer.json');
 
 if (process.env.NODE_ENV === 'test') { // Environment variable for the mode it is running on
   app.use((req, res, next) => {
     if (req.headers['x-test-login']) { // Checks if request is for custom HTTP header sent only in test requests
       // Fake user
       req.session = req.session || {};
-      req.session.user = { UserID: 1 };
+      req.session.user = {UserID: 1};
     }
     next();
   });
@@ -32,11 +29,22 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    res.locals.navigation = navigation;
-    res.locals.footer = footer;
+    const language = req.session.language || 'english';
+    res.locals.language = language;
+    res.locals.navigation = require(`./src/json/${language}/navigation.json`);
+    res.locals.footer = require(`./src/json/${language}/footer.json`);
     res.locals.user = req.session.user || null;
     res.locals.loggedIn = req.session.user;
     next();
+});
+
+app.get('/language', (req, res) => {
+    const language = req.query.language;
+    if (['english', 'isiZulu'].includes(language)) {
+      req.session.language = language;
+    }
+    const back = req.header('Referer') || '/'; // Previous page
+    res.redirect(back);
 });
 
 if (process.env.NODE_ENV !== 'test') {
