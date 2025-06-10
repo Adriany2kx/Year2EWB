@@ -1,16 +1,12 @@
 {
     "title" : "Sign Up",
-    "warning" : "Required fields are marked with an asterisk (*)",
-    "username" : "Username (*):",
+    "message" : "Create an account to get started",
     "usernamePlaceholder" : "Enter username",
-    "forename" : "Forename (*):",
     "forenamePlaceholder" : "Enter forename",
-    "surname" : "Surname (*):",
     "surnamePlaceholder" : "Enter surname",
-    "email" : "Email (*):",
     "emailPlaceholder" : "Enter email",
-    "password" : "Password (*):",
     "passwordPlaceholder" : "Enter password",
     "account" : "Already have an account?",
+    "login" : "Log in",
     "submit" : "Sign Up"
 }
