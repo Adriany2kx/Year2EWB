@@ -6,13 +6,7 @@ router.use((req, res, next) => {
     if (!res.locals.loggedIn) {
         return res.redirect('/users/login');
     }
-    else {
-        const language = res.locals.language;
-        const volunteering = require(`../json/${language}/volunteering.json`);
-        res.render('../src/views/pages/volunteering', {
-            volunteering: volunteering
-        });
-    }
+    next(); 
 });
 
 router.get('/', volunteeringController.renderVolunteeringPage);
