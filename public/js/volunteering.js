@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterDropdown = document.getElementById('volunteerFilterDropdown');
     const viewFilter = document.getElementById('viewFilter');
 
+    const expiredBtn = document.getElementById('showExpiredBtn');
+    let currentView = 'others';
+    let expiredVisible = false;
+
     if (createBtn && formDiv && displayContainer) {
         createBtn.addEventListener('click', () => {
             const isFormVisible = formDiv.style.display === 'block';
@@ -45,14 +49,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function filterView(type) {
+        currentView = type;
         const cards = document.querySelectorAll('.volunteering-card');
         cards.forEach(card => {
             const isMine = card.classList.contains('mine');
+            const isExpired = card.classList.contains('expired');
+
+            let shouldShow = false;
             if (type === 'mine') {
-                card.style.display = isMine ? 'block' : 'none';
+                shouldShow = isMine && (!isExpired || expiredVisible);
             } else if (type === 'others') {
-                card.style.display = !isMine ? 'block' : 'none';
+                shouldShow = !isMine && (!isExpired || expiredVisible);
             }
+
+            card.style.display = shouldShow ? 'block' : 'none';
         });
     }
 
@@ -60,19 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
     viewToggles.forEach(btn => {
         btn.addEventListener('click', () => {
             const type = btn.getAttribute('data-view');
+            viewToggles.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
             filterView(type);
         });
     });
 
-    const expiredBtn = document.getElementById('showExpiredBtn');
     if (expiredBtn) {
-        let expiredVisible = false;
         expiredBtn.addEventListener('click', () => {
             expiredVisible = !expiredVisible;
-            document.querySelectorAll('.volunteering-card.expired').forEach(card => {
-                card.style.display = expiredVisible ? 'block' : 'none';
-            });
-            
+            filterView(currentView);
         });
     }
 
