@@ -1,0 +1,165 @@
+/* Modern, clean, responsive landing page styles */
+body {
+    background: linear-gradient(135deg, #1e3b1e 0%, #6ba06b 100%);
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+header {
+    background: linear-gradient(135deg, #1e3b1e 0%, #6ba06b 100%);
+}
+
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 2rem 2rem 2rem;
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    margin: 2rem auto 1.5rem auto;
+    max-width: 1100px;
+    min-height: 350px;
+}
+
+.hero-content {
+    flex: 1 1 350px;
+    min-width: 300px;
+    padding-right: 2rem;
+}
+.hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    color: #42506a;
+    margin-bottom: 2rem;
+}
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(26,54,93,0.07);
+}
+.btn-primary {
+    background: #1a365d;
+    color: #fff;
+    border: none;
+}
+.btn-primary:hover {
+    background: #274472;
+}
+.btn-secondary {
+    background: #fff;
+    color: #1a365d;
+    border: 2px solid #1a365d;
+}
+.btn-secondary:hover {
+    background: #e0e7ef;
+}
+.hero-image {
+    flex: 1 1 220px;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-image img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(26,54,93,0.08);
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto 0 auto;
+    max-width: 1100px;
+}
+.feature {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(26,54,93,0.07);
+    padding: 2rem 1.5rem;
+    flex: 1 1 250px;
+    min-width: 220px;
+    max-width: 320px;
+    text-align: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.feature:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(26,54,93,0.13);
+}
+.feature i {
+    font-size: 2.5rem;
+    color: #1a365d;
+    margin-bottom: 1rem;
+}
+.feature h2 {
+    font-size: 1.3rem;
+    color: #1a365d;
+    margin-bottom: 0.5rem;
+}
+.feature p {
+    color: #42506a;
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    .hero-content {
+        padding-right: 0;
+        min-width: 0;
+        flex: 1 1 100%;
+    }
+    .hero-image {
+        margin-bottom: 2rem;
+        min-width: 0;
+        flex: 1 1 100%;
+    }
+    .hero-image img {
+        width: 80vw;
+        max-width: 90vw;
+        height: auto;
+        min-width: 120px;
+        max-height: 180px;
+    }
+    .features {
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 95vw;
+    }
+    .feature {
+        max-width: 95vw;
+        min-width: 0;
+        padding: 1.2rem 0.5rem;
+    }
+    .feature-img {
+        width: 60vw;
+        max-width: 180px;
+        height: auto;
+    }
+}
+
+footer {
+    background: linear-gradient(135deg, #1e3b1e 0%, #6ba06b 100%);
+}
