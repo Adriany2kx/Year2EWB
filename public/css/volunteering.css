@@ -1,0 +1,225 @@
+/* Overall layout container */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }
+  
+  /* Title */
+  main h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  
+  /* + Button */
+  #createVolunteerBtn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    background-color: #10b981;
+    border: 1px solid #10b981;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  #createVolunteerBtn:hover {
+    background-color: white;
+    color: #10b981;
+  }
+  
+  /* Create Form */
+  #volunteerCreateForm {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 2rem;
+  }
+  
+  .volunteer-form .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .volunteer-form .field label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .volunteer-form .field input,
+  .volunteer-form .field textarea,
+  .volunteer-form .field select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .volunteer-form button[type="submit"],
+  .volunteer-form button[type="button"] {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .volunteer-form button[type="submit"] {
+    background-color: #10b981;
+    color: white;
+    border: 1px solid #10b981;
+  }
+  
+  .volunteer-form button[type="submit"]:hover {
+    background-color: white;
+    color: #10b981;
+  }
+  
+  .volunteer-form button[type="button"] {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+  }
+  
+  .volunteer-form button[type="button"]:hover {
+    background-color: white;
+  }
+  
+  /* Search and Filter */
+  #search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+    width: 100%;
+  }
+  
+  #volunteerSearchForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  #volunteerSearchForm input[type="search"],
+  #volunteerSearchForm select {
+    appearance: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+  }
+  
+  #volunteerSearchForm button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+  
+  #volunteerSearchForm button[type="submit"] {
+    background-color: #10b981;
+    color: white;
+    border: 1px solid #10b981;
+  }
+  
+  #volunteerSearchForm button[type="submit"]:hover {
+    background-color: white;
+    color: #10b981;
+  }
+  
+  /* Cards */
+  .volunteering-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .volunteering-card h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .volunteering-card p {
+    margin: 0;
+    color: #4f4f4f;
+    font-size: 0.95rem;
+  }
+  
+  .volunteering-card form {
+    margin-top: 0.5rem;
+  }
+  
+  .volunteering-card button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #10b981;
+    background-color: #10b981;
+    color: white;
+  }
+  
+  .volunteering-card button:hover {
+    background-color: white;
+    color: #10b981;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    margin-right: 0.5rem;
+    border: 1px solid #10b981;
+    background-color: white;
+    color: #10b981;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .filter-btn:hover {
+    background-color: #10b981;
+    color: white;
+  }
+
+  
+  .expired-label {
+    color: red;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    #volunteerSearchForm {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    #createVolunteerBtn {
+      margin: 1rem auto;
+    }
+  
+    main {
+      padding: 1rem;
+    }
+  }
+  

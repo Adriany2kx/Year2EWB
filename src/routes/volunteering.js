@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const volunteeringController = require('../controllers/volunteering-controller');
 
-// Importing JSON files to access page content
-const volunteering = require('../json/english/volunteering.json');
-
-router.get('/', async(req, res) => {
-    if(!res.locals.loggedIn) {
-        res.redirect('/users/login');
+router.use((req, res, next) => {
+    if (!res.locals.loggedIn) {
+        return res.redirect('/users/login');
     }
-    else {
-        res.render('../src/views/pages/volunteering', {
-            volunteering: volunteering
-        });
-    }
+    next();
 });
+
+
+router.get('/', volunteeringController.renderVolunteeringPage);
+router.post('/join/:id', volunteeringController.handleJoinEvent);
+router.post('/create', volunteeringController.handleCreate);
+router.post('/unjoin/:id', volunteeringController.handleUnjoinEvent);
+router.post('/delete/:id', volunteeringController.handleDeleteEvent);
+router.get('/view-applicants/:id', volunteeringController.viewApplicants);
+
 
 module.exports = router;

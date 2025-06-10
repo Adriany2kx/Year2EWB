@@ -1,17 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/volunteering.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <title>Currently untitled</title>
-    </head>
-    <body>
-        <%- include('../common/navigation.ejs') %>
-        <main>
-        </main>
-        <%- include('../common/footer.ejs') %>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/volunteering.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/volunteering.js" defer></script>
+    <title>Volunteering Opportunities</title>
+</head>
+<body>
+<%- include('../common/navigation.ejs') %>
+
+<main>
+    <h1>Volunteering Opportunities</h1>
+
+    <button class="create-btn" id="createVolunteerBtn">+</button>
+
+    <!--Volunteer Creation Form -->
+    <div id="volunteerCreateForm" style="display: none; margin: 1em 0;">
+        <form method="POST" action="/volunteering/create" class="volunteer-form">
+            <div class="field">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="field">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="field">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="field">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div class="field">
+                <label for="applyBy">Apply By</label>
+                <input type="date" id="applyBy" name="applyBy" required>
+            </div>
+            <div class="field">
+                <label for="points">Points</label>
+                <input type="number" id="points" name="points" required>
+            </div>
+            <button type="submit">Create</button>
+            <button type="button" id="cancelCreateBtn">Cancel</button>
+        </form>
+    </div>
+
+ 
+<div id="volunteerDisplayContainer">
+    <!-- Search and Filter -->
+    <div id="search-container">
+        <form method="GET" id="volunteerSearchForm">
+            <input 
+                type="search" 
+                id="searchInput" 
+                name="search" 
+                placeholder="Search by title or description..." 
+                value="<%= searchTerm || '' %>" 
+            />
+            <label for="volunteerFilterDropdown">Sort by</label>
+            <select id="volunteerFilterDropdown" name="filter">
+                <option value="Default" <%= filterOption === 'Default' ? "selected" : "" %>>Default</option>
+                <option value="StartDate" <%= filterOption === 'StartDate' ? "selected" : "" %>>Start date (soonest)</option>
+                <option value="Location" <%= filterOption === 'Location' ? "selected" : "" %>>Location (A–Z)</option>
+                <option value="Points" <%= filterOption === 'Points' ? "selected" : "" %>>Points (high to low)</option>
+            </select>
+            
+            <label for="viewFilter">Filter</label>
+            <select id="viewFilter" name="view">
+                <option value="all" <%= viewFilter === 'all' ? 'selected' : '' %>>All</option>
+                <option value="joined" <%= viewFilter === 'joined' ? 'selected' : '' %>>Joined</option>
+                <option value="unjoined" <%= viewFilter === 'unjoined' ? 'selected' : '' %>>Unjoined</option>
+            </select>
+            
+            
+            <button type="submit">Search</button>
+            <button type="button" id="clearSearchBtn">Clear</button>
+        </form>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <button class="filter-btn" data-view="mine">Your Listings</button>
+        <button class="filter-btn" data-view="others">Opportunities</button>
+        <button id="showExpiredBtn">Expired</button>
+    </div>
+      
+      
+      
+
+    <!-- Volunteer Events-->
+    <% if (volunteeringEvents.length === 0) { %>
+        <p>No events currently available.</p>
+    <% } else { %>
+        <% volunteeringEvents.forEach(event => { %>
+            <% const isExpired = new Date(event.ApplyBy) < new Date(); %>
+            <div class="volunteering-card <%= event.CreatorID === user.UserID ? 'mine' : 'others' %> <%= isExpired ? 'expired' : '' %>">
+                <h3>
+                    <%= event.Title %>
+                    <% if (event.CreatorID === user.UserID) { %>
+                        <span>⭐</span>
+                        <button 
+                            type="button"
+                            class="toggle-applicants-btn"
+                            id="toggleBtn-<%= event.PostID %>"
+                            data-postid="<%= event.PostID %>">
+                            View Applicants
+                        </button>
+
+                    <% } %>
+                </h3>
+        
+                <div id="applicants-<%= event.PostID %>" style="display: none; margin-top: 1em;">
+                    <% const list = applicantMap[event.PostID] || []; %>
+                    <% if (list.length === 0) { %>
+                        <p>No applicants yet.</p>
+                    <% } else { %>
+                        <ul>
+                            <% list.forEach(a => { %>
+                                <li>
+                                    <strong><%= a.Forename %> <%= a.Surname %></strong>
+                                    (@<%= a.Username %>) – Points: <%= a.CredibilityPoints %> – Joined: <%= new Date(a.DateApplied).toLocaleDateString() %>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } %>
+                </div>
+        
+                <p><%= event.Description %></p>
+                <p><strong>Location:</strong> <%= event.Location %></p>
+                <p><strong>Date:</strong> <%= new Date(event.StartDate).toLocaleDateString() %></p>
+                <p><strong>Points:</strong> <%= event.Points %></p>
+        
+                <% if (event.CreatorID === user.UserID) { %>
+                    <form method="POST" action="/volunteering/delete/<%= event.PostID %>" onsubmit="return confirm('Delete this post?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } else { %>
+                    <% const isExpired = new Date(event.ApplyBy) < new Date(); %>
+
+                    <% if (isExpired) { %>
+                        <p class="expired-label">Expired</p>
+                    <% } else { %>
+                        <% if (event.joined) { %>
+                            <form method="POST" action="/volunteering/unjoin/<%= event.PostID %>">
+                                <button type="submit">Unjoin</button>
+                            </form>
+                        <% } else { %>
+                            <form method="POST" action="/volunteering/join/<%= event.PostID %>">
+                                <button type="submit">Join</button>
+                            </form>
+                        <% } %>
+                    <% } %>
+                    
+                <% } %>
+            </div>
+        <% }) %>
+        
+    <% } %>
+    
+</div>
+
+</main>
+
+<%- include('../common/footer.ejs') %>
+</body>
 </html>
