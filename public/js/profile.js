@@ -127,4 +127,38 @@ document.addEventListener('DOMContentLoaded', () => {
   homeBtn?.addEventListener('click', () => {
     window.location.href = '/';
   });
+
+  // ============================
+  // Hamburger dropdown nav logic
+  // ============================
+
+  const hamburger = document.getElementById('hamburger');
+  const dropdownNav = document.getElementById('dropdownNav');
+  if (hamburger && dropdownNav) {
+    hamburger.addEventListener('click', function () {
+      const isOpen = dropdownNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      // Swap icon
+      const bars = hamburger.querySelector('.fa-bars');
+      let x = hamburger.querySelector('.fa-xmark');
+      if (!x) {
+        x = document.createElement('i');
+        x.className = 'fa-solid fa-xmark';
+        bars.parentNode.appendChild(x);
+      }
+      bars.style.display = isOpen ? 'none' : '';
+      x.style.display = isOpen ? 'inline-block' : 'none';
+    });
+    // Close nav if click outside
+    document.addEventListener('click', function (e) {
+      if (dropdownNav.classList.contains('open') && !dropdownNav.contains(e.target) && !hamburger.contains(e.target)) {
+        dropdownNav.classList.remove('open');
+        hamburger.classList.remove('open');
+        const bars = hamburger.querySelector('.fa-bars');
+        const x = hamburger.querySelector('.fa-xmark');
+        if (bars) bars.style.display = '';
+        if (x) x.style.display = 'none';
+      }
+    });
+  }
 });

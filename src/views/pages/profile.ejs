@@ -16,15 +16,23 @@
 %>
   data-modal-to-open="<%= modalToOpen %>">
 
-    <%- include('../common/navigation') %>
-
     <div class="container">
         <div class="header">
-    <h1>Profile</h1>
-    <button class="settings-btn" aria-label="Home">
-        <i class="fa-solid fa-home"></i>
-    </button>
-</div>
+            <h1>Profile</h1>
+            <button id="hamburger" class="nav-btn" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav id="dropdownNav" class="dropdown-nav">
+                <ul class="nav-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/jobs">Jobs</a></li>
+                    <li><a href="/workshops">Workshops</a></li>
+                    <li><a href="/volunteering">Volunteering</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
 
         <div class="profile-pic">
             <% if (user && user.Forename && user.Surname) { %>
