@@ -51,21 +51,29 @@ document.addEventListener('DOMContentLoaded', function () {
     function filterView(type) {
         currentView = type;
         const cards = document.querySelectorAll('.volunteering-card');
+        let visibleCount = 0;
+    
         cards.forEach(card => {
             const isMine = card.classList.contains('mine');
             const isExpired = card.classList.contains('expired');
-
+    
             let shouldShow = false;
             if (type === 'mine') {
                 shouldShow = isMine && (!isExpired || expiredVisible);
             } else if (type === 'others') {
                 shouldShow = !isMine && (!isExpired || expiredVisible);
             }
-
+    
             card.style.display = shouldShow ? 'block' : 'none';
+            if (shouldShow) visibleCount++;
         });
+    
+        const message = document.getElementById('noResultsMessage');
+        if (message) {
+            message.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
     }
-
+    
     const viewToggles = document.querySelectorAll('.filter-btn');
     viewToggles.forEach(btn => {
         btn.addEventListener('click', () => {
