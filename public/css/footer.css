@@ -11,8 +11,8 @@ footer {
 
 #language {
   z-index: 1000;
-  width: 20%;
-  min-width: 15%;
+  width: 40%;
+  min-width: 25%;
   padding: 1rem;
   border: none;
   border-radius: 5px;
@@ -103,4 +103,11 @@ footer {
 
 #changeLanguage:hover {
   background-color: #4a914a;
+}
+
+@media (max-width: 600px) {
+  #language {
+    width: 60%;
+    min-width: 20%;
+  }
 }
