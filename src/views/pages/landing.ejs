@@ -8,50 +8,30 @@
         <link rel="stylesheet" href="/css/footer.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
         <title>Make Connect</title>
-        <style>
-            .feature-img {
-                width: 300px;
-                height: 300px;
-                object-fit: contain;
-                margin-bottom: 0.7rem;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        </style>
     </head>
     <body>
         <%- include('../common/navigation.ejs') %>
         <main>
             <section class="hero">
                 <div class="hero-content">
-                    <h1>Welcome to EWB Careers Portal</h1>
+                    <h1>Welcome to Make Connect!</h1>
                     <p>Your gateway to jobs, workshops, and volunteering opportunities.<br>Empowering your future, one step at a time.</p>
                     <div class="hero-buttons">
-                        <a href="/users/signup" class="btn btn-primary">Sign Up</a>
-                        <a href="/users/login" class="btn btn-secondary">Login</a>
+                        <a href="/users/signup" class="btn">Sign Up</a>
+                        <a href="/users/login" class="btn">Login</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="/images/beer1.jpeg" alt="Careers illustration 1" style="max-width:75%; height:auto; border-radius:2rem; box-shadow:0 2px 12px rgba(26,54,93,0.08);">
-                </div>
             </section>
-            <section class="features">
-                <div class="feature">
-                    <img src="/images/beer2.png" alt="Find Jobs" class="feature-img">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <h2>Find Jobs</h2>
+            <section class="items">
+                <div class="item">
+                    <h2>Job</h2>
                     <p>Browse a wide range of job opportunities tailored to your skills and interests. Easily filter, search, and apply for positions that match your career goals. Stay updated with the latest openings and take the next step in your professional journey.</p>
                 </div>
-                <div class="feature">
-                    <img src="/images/beer3.png" alt="Workshops" class="feature-img">
-                    <i class="fa-solid fa-chalkboard-user"></i>
+                <div class="item">
                     <h2>Workshops</h2>
                     <p>Participate in hands-on workshops designed to enhance your knowledge and skills. Learn from industry experts, gain practical experience, and connect with peers in interactive sessions that prepare you for real-world challenges.</p>
                 </div>
-                <div class="feature">
-                    <img src="/images/beer4.png" alt="Volunteering" class="feature-img">
-                    <i class="fa-solid fa-hands-helping"></i>
+                <div class="item">
                     <h2>Volunteering</h2>
                     <p>Make a difference in your community by joining our volunteering programs. Develop new skills, build meaningful relationships, and contribute to causes you care about while gaining valuable experience for your future career.</p>
                 </div>
