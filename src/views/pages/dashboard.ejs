@@ -6,12 +6,42 @@
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/navigation.css">
         <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
         <title>Currently untitled</title>
     </head>
     <body>
         <%- include('../common/navigation.ejs') %>
         <main>
+            <section class="dashboard">
+                <h1>Welcome, <%= user ? user.Username : 'Guest' %>!</h1>
+                <div class="dashboard-options">
+                    <div class="option">
+                        <img src="/images/beer2.png" alt="Browse Jobs">
+                        <h2>Browse Jobs</h2>
+                        <p>Find local employment opportunities</p>
+                    </div>
+                    <div class="option">
+                        <img src="/images/beer4.png" alt="Join Volunteering">
+                        <h2>Join Volunteering</h2>
+                        <p>Give back to your community</p>
+                    </div>
+                    <div class="option">
+                        <img src="/images/beer3.png" alt="Upcoming Workshops">
+                        <h2>Upcoming Workshops</h2>
+                        <p>Learn new skills and grow</p>
+                    </div>
+                </div>
+                <section class="activity">
+                    <h2>Your Activity</h2>
+                    <div class="activity-item">
+                        <img src="/images/dashboard.png" alt="Workshops">
+                        <p>2 upcoming workshops</p>
+                    </div>
+                    <div class="activity-item">
+                        <img src="/images/dashboard.png" alt="Volunteer Hours">
+                        <p>5 volunteer hours completed</p>
+                    </div>
+                </section>
+            </section>
         </main>
         <%- include('../common/footer.ejs') %>
     </body>

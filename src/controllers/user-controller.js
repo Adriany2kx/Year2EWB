@@ -291,3 +291,10 @@ exports.updateLanguage = async (req, res) => {
         keepLanguageModalOpen: true
     });
 };
+exports.getUsername = (req, res) => {
+    if (req.session.user && req.session.user.Username) {
+        res.send(req.session.user.Username); // Send the username as plain text
+    } else {
+        res.status(401).send('User not logged in'); // Handle cases where the user is not logged in
+    }
+};

@@ -58,5 +58,6 @@ app.use('/jobs', require('./src/routes/jobs'));
 app.use('/workshops', require('./src/routes/workshops'));
 app.use('/volunteering', require('./src/routes/volunteering'));
 app.use('/profile', require('./src/routes/profile'));
-
+app.use('/users', require('./src/routes/users'));
+app.use('/username', require('./src/routes/username'));
 module.exports = app;
