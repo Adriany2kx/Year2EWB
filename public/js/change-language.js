@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const language = document.getElementById('language');
   const open = document.getElementById('changeLanguage');
-  const cancel = document.getElementById('cancel');
+  const cancel = document.getElementById('cancel-language');
   if (open && language) {
     open.addEventListener('click', () => {
       language.showModal();
