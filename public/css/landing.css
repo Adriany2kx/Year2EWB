@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    text-align: center;
     padding: 3rem 2rem 2rem 2rem;
     background: #fff;
     border-radius: 1.5rem;
@@ -34,42 +34,17 @@
 }
 .btn {
     padding: 0.75rem 2rem;
-    border-radius: 2rem;
+    border-radius: 5px;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(26,54,93,0.07);
-}
-.btn-primary {
-    background: black;
+    border: 2px solid #4a914a;
+    background-color: #4a914a;
     color: #fff;
-    border: none;
 }
-.btn-primary:hover {
-    background: #274472;
-}
-.btn-secondary {
-    background: #fff;
-    color: black;
-    border: 2px solid black;
-}
-.btn-secondary:hover {
-    background: #e0e7ef;
-}
-.hero-image {
-    flex: 1 1 220px;
-    min-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.hero-image img {
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    box-shadow: 0 2px 12px rgba(26,54,93,0.08);
+.btn:hover {
+    background-color: white;
+    color: #4a914a;
 }
 
 .items {
@@ -95,11 +70,6 @@
     transform: translateY(-6px) scale(1.03);
     box-shadow: 0 6px 24px rgba(26,54,93,0.13);
 }
-.item i {
-    font-size: 2.5rem;
-    color: black;
-    margin-bottom: 1rem;
-}
 .item h2 {
     font-size: 1.3rem;
     color: black;
@@ -121,18 +91,6 @@
         min-width: 0;
         flex: 1 1 100%;
     }
-    .hero-image {
-        margin-bottom: 2rem;
-        min-width: 0;
-        flex: 1 1 100%;
-    }
-    .hero-image img {
-        width: 80vw;
-        max-width: 90vw;
-        height: auto;
-        min-width: 120px;
-        max-height: 180px;
-    }
     .items {
         flex-direction: column;
         gap: 1.5rem;
@@ -142,10 +100,5 @@
         max-width: 95vw;
         min-width: 0;
         padding: 1.2rem 0.5rem;
-    }
-    .item-img {
-        width: 60vw;
-        max-width: 180px;
-        height: auto;
     }
 }

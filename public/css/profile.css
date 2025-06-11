@@ -58,7 +58,7 @@ body {
   width: 44px;
   height: 44px;
   font-size: 2rem;
-  color: #2e6f57;
+  color: #4a914a;
   transition: color 0.2s;
   margin-left: auto;
 }
@@ -66,7 +66,7 @@ body {
 .nav-btn.open,
 .nav-btn:active,
 .nav-btn:focus {
-  color: #22543D;
+  color: #4a914a;
 }
 
 /* Dropdown nav styles: match width of buttons, right-aligned */
@@ -102,7 +102,7 @@ body {
 }
 
 .nav-list li a {
-  color: #2e6f57;
+  color: #4a914a;
   font-size: 1.05rem;
   text-decoration: none;
   font-weight: 600;
@@ -116,7 +116,7 @@ body {
 .nav-list li a:hover,
 .nav-list li a:focus {
   background: #e6f9ed;
-  color: #22543D;
+  color: #4a914a;
 }
 
 /* ========== Buttons ========== */
@@ -124,9 +124,9 @@ body {
 .modal-close-btn,
 .profile-avatar-remove {
   background: none;
-  border: none;
+  border: 2px solid #4a914a;
   cursor: pointer;
-  color: #2e6f57;
+  color: #4a914a;
   transition: color 0.2s;
 }
 
@@ -137,7 +137,7 @@ body {
 
 .settings-btn:hover i,
 .modal-close-btn:hover {
-  color: #22543D;
+  color: #4a914a;
 }
 
 /* ========== Profile Picture ========== */
@@ -146,7 +146,7 @@ body {
 }
 
 .initials {
-  background-color: #2e6f57;
+  background-color: #4a914a;
   color: white;
   font-size: 2rem;
   width: 80px;
@@ -163,23 +163,25 @@ body {
 .logout-btn,
 .profile-modal-save,
 .notification-modal-save {
-  background-color: #2e6f57;
+  background-color: #4a914a;
   color: white;
-  border: none;
+  border: 2px solid #4a914a;
   border-radius: 8px;
   padding: 0.8rem 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
   width: 100%;
   max-width: 320px;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .edit-btn:hover,
 .logout-btn:hover,
 .profile-modal-save:hover,
 .notification-modal-save:hover {
-  background-color: #22543D;
+  background-color: white;
+  color: black;
 }
 
 /* ========== Activity Section ========== */
@@ -200,7 +202,7 @@ body {
 .activity-box a {
   display: block;
   text-align: right;
-  color: #2e6f57;
+  color: #4a914a;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.95rem;
@@ -230,9 +232,8 @@ body {
 .menu-buttons button:hover,
 .menu-buttons button:active,
 .menu-buttons button.selected {
-  background-color: #22543D;
+  background-color: #4a914a;
   color: white;
-  border-color: #22543D;
 }
 
 /* ========== Modal Overlay ========== */
@@ -289,7 +290,7 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 2px solid #2e6f57;
+  border: 2px solid #4a914a;
   background: #f7f9fa;
   color: white;
   display: flex;
@@ -307,7 +308,7 @@ body {
 }
 
 .profile-input:focus {
-  outline: 2px solid #2e6f57;
+  outline: 2px solid #4a914a;
 }
 
 .profile-note,
@@ -330,7 +331,7 @@ body {
   border-radius: 6px;
   padding: 0.4rem 0.7rem;
   font-size: 0.95rem;
-  color: #2e6f57;
+  color: #4a914a;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -338,7 +339,7 @@ body {
 }
 
 .profile-linked-btn:hover {
-  background: #2e6f57;
+  background: #4a914a;
   color: white;
 }
 
@@ -351,7 +352,7 @@ body {
 .notification-section-title {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #2e6f57;
+  color: #4a914a;
   margin: 1rem 0 0.5rem;
 }
 
@@ -361,14 +362,14 @@ body {
   border-radius: 6px;
   padding: 0.4rem 1rem;
   font-size: 1rem;
-  color: #2e6f57;
+  color: #4a914a;
   cursor: pointer;
   margin-bottom: 0.3rem;
   transition: background 0.2s, color 0.2s;
 }
 
 .notification-btn:hover {
-  background: #2e6f57;
+  background: #4a914a;
   color: white;
 }
 
@@ -394,7 +395,7 @@ body {
 }
 
 .signup-container p {
-  color: #6b7280;
+  color: black;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
@@ -410,7 +411,7 @@ body {
 }
 
 .signup-container button {
-  background-color: #39664d;
+  background-color: #4a914a;
   border-radius: 6px;
   color: white;
   padding: 1rem;
@@ -421,7 +422,7 @@ body {
 }
 
 .signup-container button:hover {
-  background-color: #2e5440;
+  background-color: #4a914a;
 }
 
 .signup-footer {
@@ -431,7 +432,7 @@ body {
 }
 
 .signup-footer a {
-  color: #39664d;
+  color: #4a914a;
   text-decoration: none;
   font-weight: 500;
 }
@@ -451,7 +452,7 @@ body {
 
 .profile-update-message.success {
   background: #e6f9ed;
-  color: #217a3a;
+  color: #4a914a;
   border: 1px solid #b6e7c9;
 }
 

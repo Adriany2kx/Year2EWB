@@ -55,7 +55,7 @@ input {
 
 #submit {
   width: 100%;
-  background-color: #2f6652;
+  background-color: #4a914a;
   color: white;
   border: none;
   padding: 1rem;
@@ -63,17 +63,17 @@ input {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: solid 1px #255944;
+  border: solid 1px #4a914a;
 }
 
 #submit:hover {
   background-color: white;
-  color: #255944;
+  color: #4a914a;
 }
 
 a {
   display: block;
-  color: #10b981;
+  color: #4a914a;
   text-decoration: none;
   font-size: 1rem;
   text-align: center;
