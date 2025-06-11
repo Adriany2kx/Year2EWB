@@ -1,1 +1,24 @@
-{}
+{
+    "legend": "Post a Workshop",
+    "title": "Workshop Title",
+    "description": "Workshop Description",
+    "location": "Location",
+    "startDate": "Start Date",
+    "applyBy": "Register By",
+    "remainingSlots": "Number of Slots",
+    "sortBy": "Sort by",
+    "sortDatePosted": "Date posted",
+    "sortDate": "Workshop Date",
+    "sortSlots": "Slots Remaining",
+    "createButton": "+",
+    "post": "Post Workshop",
+    "cancel": "Cancel",
+    "emailTitle": "Contact the host via email",
+    "cardLocation": "Location",
+    "cardStartDate": "Start Date",
+    "cardApplyBy": "Register By",
+    "cardWorkshopDate": "Workshop Date",
+    "cardSlots": "Slots Remaining",
+    "noWorkshopsFound": "No workshops found.",
+    "searchPlaceholder": "Search workshops..."
+}

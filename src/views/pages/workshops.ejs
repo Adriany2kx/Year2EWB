@@ -1,18 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/workshops.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-        <title>Make Connect</title>
-    </head>
-    <body>
-        <%- include('../common/navigation.ejs') %>
-        <main>
-        </main>
-        <%- include('../common/footer.ejs') %>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/workshops.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/post-workshop.js" defer></script>
+    <title>Workshops</title>
+</head>
+<body>
+    <%- include('../common/navigation.ejs') %>
+    <main>
+        <dialog id="postWorkshop">
+            <form method="POST">
+                <legend><%= workshops.legend %></legend>
+                <div class="field">
+                    <label for="title"><%= workshops.title %></label>
+                    <input id="title" name="title" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="description"><%= workshops.description %></label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="location"><%= workshops.location %></label>
+                    <input id="location" name="location" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="startDate"><%= workshops.startDate %></label>
+                    <input id="startDate" name="startDate" type="date" required>
+                </div>
+                <div class="field">
+                    <label for="applyBy"><%= workshops.applyBy %></label>
+                    <input id="applyBy" name="applyBy" type="date" required>
+                </div>
+                <div class="field">
+                    <label for="remainingSlots"><%= workshops.remainingSlots %></label>
+                    <input id="remainingSlots" name="remainingSlots" type="number" min="1" required>
+                </div>
+                <button type="submit" id="post"><%= workshops.post %></button>
+                <button type="button" id="cancel"><%= workshops.cancel %></button>
+            </form>
+        </dialog>
+        <div id="workshop-section-wrapper">
+            <div id="workshop-header">
+                <h1>Workshops board</h1>
+                <button id="createWorkshop" type="button"><%= workshops.createButton %></button>
+            </div>
+            <div id="search-container">
+                <form method="GET" id="searchForm">
+                    <input type="search" name="search" placeholder="<%= workshops.searchPlaceholder %>" value="<%= searchTerm || '' %>"/>
+                    <label><%= workshops.sortBy %></label>
+                    <select id="sort-dropdown" name="filter">
+                        <option value="Date posted" <%= filterOption === "Date posted" ? "selected" : "" %>><%= workshops.sortDatePosted %></option>
+                        <option value="Date" <%= filterOption === "Date" ? "selected" : "" %>><%= workshops.sortDate %></option>
+                        <option value="Slots remaining" <%= filterOption === "Slots remaining" ? "selected" : "" %>><%= workshops.sortSlots %></option>
+                    </select>
+                </form>
+            </div>
+            <div id="workshop-container">
+                <% if (workshopListings && workshopListings.length > 0) { %>
+                    <% workshopListings.forEach(workshop => { %>
+                        <a href="mailto:<%= encodeURIComponent(workshop.Email) %>" class="workshop-box" title="<%= workshops.emailTitle %>">
+                            <h3><%= workshop.Title %></h3>
+                            <p><%= workshop.Description.length > 100 ? workshop.Description.substring(0, 100) + '...' : workshop.Description %></p>
+                            <p><strong><%= workshops.cardLocation %>:</strong> <%= workshop.Location %></p>
+                            <p><strong><%= workshops.cardStartDate %>:</strong> <%= new Date(workshop.StartDate).toLocaleDateString() %></p>
+                            <p><strong><%= workshops.cardApplyBy %>:</strong> <%= new Date(workshop.ApplyBy).toLocaleDateString() %></p>
+                            <p><strong><%= workshops.cardWorkshopDate %>:</strong> <%= new Date(workshop.Date).toLocaleDateString() %></p>
+                            <p><strong><%= workshops.cardSlots %>:</strong> <%= workshop.RemainingSlots %></p>
+
+                            <% // Show delete button only if logged in user is the workshop creator %>
+                            <% if (user && user.UserID === workshop.UserID) { %>
+                                <form action="/workshops/delete/<%= workshop.PostID %>" method="POST" style="display:inline;" onclick="event.stopPropagation();">
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this workshop?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            <% } %>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <p><%= workshops.noWorkshopsFound %></p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+    <%- include('../common/footer.ejs') %>
+</body>
 </html>
