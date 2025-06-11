@@ -20,8 +20,8 @@ main {
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
-    background-color: #10b981;
-    border: 1px solid #10b981;
+    background-color: #4a914a;
+    border: 1px solid #4a914a;
     color: white;
     cursor: pointer;
     display: flex;
@@ -32,7 +32,7 @@ main {
   
   #createVolunteerBtn:hover {
     background-color: white;
-    color: #10b981;
+    color: #4a914a;
   }
   
   /* Create Form */
@@ -75,14 +75,14 @@ main {
   }
   
   .volunteer-form button[type="submit"] {
-    background-color: #10b981;
+    background-color: #4a914a;
     color: white;
-    border: 1px solid #10b981;
+    border: 1px solid #4a914a;
   }
   
   .volunteer-form button[type="submit"]:hover {
     background-color: white;
-    color: #10b981;
+    color: #4a914a;
   }
   
   .volunteer-form button[type="button"] {
@@ -131,14 +131,14 @@ main {
   }
   
   #volunteerSearchForm button[type="submit"] {
-    background-color: #10b981;
+    background-color: #4a914a;
     color: white;
-    border: 1px solid #10b981;
+    border: 1px solid #4a914a;
   }
   
   #volunteerSearchForm button[type="submit"]:hover {
     background-color: white;
-    color: #10b981;
+    color: #4a914a;
   }
   
   /* Cards */
@@ -173,28 +173,28 @@ main {
     font-size: 0.95rem;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid #10b981;
-    background-color: #10b981;
+    border: 1px solid #4a914a;
+    background-color: #4a914a;
     color: white;
   }
   
   .volunteering-card button:hover {
     background-color: white;
-    color: #10b981;
+    color: #4a914a;
   }
 
   .filter-btn {
     padding: 0.4rem 1rem;
     margin-right: 0.5rem;
-    border: 1px solid #10b981;
+    border: 1px solid #4a914a;
     background-color: white;
-    color: #10b981;
+    color: #4a914a;
     cursor: pointer;
     border-radius: 5px;
   }
   
   .filter-btn:hover {
-    background-color: #10b981;
+    background-color: #4a914a;
     color: white;
   }
 

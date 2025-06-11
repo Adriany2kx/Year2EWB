@@ -62,14 +62,14 @@ dialog::backdrop {
 }
 
 #post {
-  border: solid 1px #10b981;
-  background-color: #10b981;
+  border: solid 1px #4a914a;
+  background-color: #4a914a;
   color: white;
 }
 
 #post:hover {
   background-color: white;
-  color: #10b981;
+  color: #4a914a;
 }
 
 #cancel {
@@ -88,8 +88,8 @@ dialog::backdrop {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: #10b981;
-  border: solid 1px #10b981;
+  background-color: #4a914a;
+  border: solid 1px #4a914a;
   color: white;
   cursor: pointer;
   flex-shrink: 0;
@@ -98,7 +98,7 @@ dialog::backdrop {
 
 #createJob:hover {
   background-color: white;
-  color: #10b981;
+  color: #4a914a;
 }
 
 #job-section-wrapper {

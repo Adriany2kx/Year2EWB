@@ -6,7 +6,7 @@ footer {
     height: 5rem;
     margin-top: 5rem;
     overflow: hidden;
-    background-color: #2d6a4f;
+    background-color: #4a914a;
 }
 
 #language {
@@ -29,7 +29,7 @@ footer {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 600;
-  color: black;
+  color: #4a914a;
   text-align: center;
 }
 
@@ -57,9 +57,9 @@ footer {
 }
 
 #language button[type="submit"] {
-  background-color: #10b981;
+  background-color: #4a914a;
   color: white;
-  border: 1px solid #10b981;
+  border: 1px solid #4a914a;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   font-size: 1rem;
@@ -69,13 +69,13 @@ footer {
 
 #language button[type="submit"]:hover {
   background-color: white;
-  color: #10b981;
+  color: #4a914a;
 }
 
 #language button[type="button"] {
   background-color: #ccc;
   border: 1px solid #ccc;
-  color: black;
+  color: #4a914a;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   font-size: 1rem;
@@ -87,7 +87,7 @@ footer {
 }
 
 #changeLanguage {
-  background-color: #2d6a4f;
+  background-color: #4a914a;
   border: none;
   margin: 0;
   color: white;
@@ -102,5 +102,5 @@ footer {
 }
 
 #changeLanguage:hover {
-  background-color: #1b4332;
+  background-color: #4a914a;
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <script src="/js/volunteering.js" defer></script>
-    <title>Volunteering Opportunities</title>
+    <title>Make Connect</title>
 </head>
 <body>
 <%- include('../common/navigation.ejs') %>
@@ -101,7 +101,7 @@
             <div class="volunteering-card <%= event.CreatorID === user.UserID ? 'mine' : 'others' %> <%= isExpired ? 'expired' : '' %>">
                 <h3>
                     <%= event.Title %>
-                    <% if (event.CreatorID === user.UserID) { %>
+                    <% if (event.CreatorID === user.UserID && !isExpired) { %>
                         <span>⭐</span>
                         <button 
                             type="button"
@@ -163,6 +163,11 @@
     <% } %>
     
 </div>
+
+<p id="noResultsMessage" style="display: none; text-align: center; font-style: italic; margin-top: 1rem;">
+    No matching volunteering opportunities found.
+</p>
+
 
 </main>
 
