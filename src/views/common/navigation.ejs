@@ -1,16 +1,28 @@
 <header>
-    <nav>
-        <ul id="navBar">
-            <li class="nav"><a href="/"><%= navigation.mainAnchor1 %></a></li>
-            <% if (!loggedIn) { %>
-                <li class="nav"><a href="/users/login"><%= navigation.mainAnchor2 %></a></li>
-                <li class="nav"><a href="/users/signup"><%= navigation.mainAnchor3 %></a></li>
-            <% } else { %>
-                <li class="nav"><a href="/jobs"><%= navigation.mainAnchor4 %></a></li>
-                <li class="nav"><a href="/workshops"><%= navigation.mainAnchor5 %></a></li>
-                <li class="nav"><a href="/volunteering"><%= navigation.mainAnchor6 %></a></li>
-                <li class="nav"><a href="/profile"><%= navigation.mainAnchor7 %></a></li>
-            <% } %> 
-        </ul>
-    </nav>
+  <nav>
+    <div class="hamburger-container">
+      <button id="hamburgerBtn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div id="navBar">
+      <ul class="nav">
+        <li><a href="/"><%= navigation.mainAnchor1 %></a></li>
+        <% if (!loggedIn) { %>
+          <li><a href="/users/login"><%= navigation.mainAnchor2 %></a></li>
+          <li><a href="/users/signup"><%= navigation.mainAnchor3 %></a></li>
+        <% } else { %>
+          <li><a href="/jobs"><%= navigation.mainAnchor4 %></a></li>
+          <li><a href="/workshops"><%= navigation.mainAnchor5 %></a></li>
+          <li><a href="/volunteering"><%= navigation.mainAnchor6 %></a></li>
+          <li><a href="/profile"><%= navigation.mainAnchor7 %></a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
 </header>
+
+<script src="/js/hamburger.js" defer></script>

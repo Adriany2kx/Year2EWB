@@ -1,61 +1,173 @@
+/* Header - Matching Footer Style */
 header {
     width: 100%;
-    height: 75px;
+    height: 5rem;
     background-color: #2d6a4f;
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-bottom: 5rem;
     position: relative;
-    overflow: hidden;
+    z-index: 1000;
+}
+
+nav {
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 2rem;
 }
 
 #navBar {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    height: 75px;
-    padding: 0 10px;
+    justify-content: center;
+    gap: 1.5rem;
+    height: 100%;
+    width: 100%;
 }
 
+/* Desktop Navigation Items */
 .nav {
     list-style-type: none;
     margin: 0;
-    padding: 0 10px;
-    font-size: 1rem;
-    font-weight: 100;
-    cursor: pointer;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
 }
 
 .nav a {
     text-decoration: none;
     color: white;
-    font-weight: normal;
-    font-size: 1.5rem;
-    transition: color 0.2s;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
-header img {
-    width: 64px;
-    height: 64px;
-}
-
-.nav:hover,
+/* Hover State */
 .nav a:hover {
-    color: #FFFFFF;
-    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
-@media only screen and (max-width: 750px) {
+/* Active State */
+.nav a.active {
+    background-color: #10b981;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Hamburger Button Container */
+.hamburger-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+}
+
+/* Hamburger Button */
+#hamburgerBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#hamburgerBtn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#hamburgerBtn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 768px) {
+    nav {
+        justify-content: center;
+        padding: 0 1.5rem;
+        position: relative;
+    }
+
+    .hamburger-container {
+        display: flex;
+    }
+
+    /* Hide navbar by default on mobile */
     #navBar {
         display: none;
+        position: fixed;
+        top: 5rem;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #2d6a4f;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 1rem 0;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    /* Show navbar when toggled */
+    #navBar.show {
+        display: flex !important;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .nav a {
+        display: block;
+        padding: 1rem;
+        border-radius: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: none;
     }
 }
-
-@media only screen and (max-width: 1500px) {
-    header h1 {
-        display: none;
-    }
-}
-
-
