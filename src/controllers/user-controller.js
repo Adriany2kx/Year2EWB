@@ -298,3 +298,19 @@ exports.getUsername = (req, res) => {
         res.status(401).send('User not logged in'); // Handle cases where the user is not logged in
     }
 };
+
+exports.getVolunteer = (req, res) => {
+    if (req.session.user && req.session.user.Username) {
+        res.send(req.session.Volunteer.Points); // Send the username as plain text
+    } else {
+        res.status(401).send('User not logged in'); // Handle cases where the user is not logged in
+        }
+};
+
+exports.getApplication = (req, res) => {
+    if (req.session.user && req.session.user.Username) {
+        res.send(req.session.Application.Status); // Send the username as plain text
+    } else {
+        res.status(401).send('User not logged in'); // Handle cases where the user is not logged in
+        }
+};

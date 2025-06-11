@@ -6,12 +6,7 @@
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/navigation.css">
         <link rel="stylesheet" href="/css/footer.css">
-<<<<<<< HEAD
         <title>Currently untitled</title>
-=======
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-        <title>Make Connect</title>
->>>>>>> ff22b2f0a1290ccbf7a4e5a1cfc2a5660cd4e25d
     </head>
     <body>
         <%- include('../common/navigation.ejs') %>
@@ -21,29 +16,27 @@
                 <div class="dashboard-options">
                     <div class="option">
                         <img src="/images/beer2.png" alt="Browse Jobs">
-                        <h2>Browse Jobs</h2>
+                        <h2><a href="/jobs">Browse Jobs</a></h2>
                         <p>Find local employment opportunities</p>
                     </div>
                     <div class="option">
                         <img src="/images/beer4.png" alt="Join Volunteering">
-                        <h2>Join Volunteering</h2>
+                        <h2><a href="/volunteering">Join Volunteering</a></h2>
                         <p>Give back to your community</p>
                     </div>
                     <div class="option">
                         <img src="/images/beer3.png" alt="Upcoming Workshops">
-                        <h2>Upcoming Workshops</h2>
+                        <h2><a href="/workshops">Upcoming Workshops</a></h2>
                         <p>Learn new skills and grow</p>
                     </div>
                 </div>
                 <section class="activity">
                     <h2>Your Activity</h2>
                     <div class="activity-item">
-                        <img src="/images/dashboard.png" alt="Workshops">
-                        <p>2 upcoming workshops</p>
+                        <p><%= user && user.application ? user.application : 0 %>, Applications</p>
                     </div>
                     <div class="activity-item">
-                        <img src="/images/dashboard.png" alt="Volunteer Hours">
-                        <p>5 volunteer hours completed</p>
+                        <p><%= user && user.volunteers ? user.volunteers : 0 %> ,Volunteers</p>
                     </div>
                 </section>
             </section>

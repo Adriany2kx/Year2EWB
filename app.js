@@ -60,4 +60,6 @@ app.use('/volunteering', require('./src/routes/volunteering'));
 app.use('/profile', require('./src/routes/profile'));
 app.use('/users', require('./src/routes/users'));
 app.use('/username', require('./src/routes/username'));
+app.use('/volunteers', require('./src/routes/volunteers'));
+app.use('/application', require('./src/routes/application'));
 module.exports = app;
