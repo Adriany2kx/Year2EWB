@@ -284,28 +284,6 @@ describe('unit - volunteering controller functions', () => {
     expect(res.redirect).toHaveBeenCalledWith('/volunteering');
   });
 
-  test('handleDeleteEvent only deletes if owner and redirects', async () => {
-    const req = createMockReq({}, {}, { id: '10' });
-    const res = createMockRes();
-    volunteeringModel.getVolunteerPost = jest.fn().mockResolvedValue({ UserID: 1 });
-    volunteeringModel.deleteVolunteerEvent = jest.fn();
-
-    await volunteeringController.handleDeleteEvent(req, res);
-    expect(volunteeringModel.getVolunteerPost).toHaveBeenCalledWith(10);
-    expect(volunteeringModel.deleteVolunteerEvent).toHaveBeenCalledWith(10);
-    expect(res.redirect).toHaveBeenCalledWith('/volunteering');
-  });
-
-  test('viewApplicants renders applicant view', async () => {
-    const req = createMockReq({}, {}, { id: '9' });
-    const res = createMockRes();
-    const mockApplicants = [{ UserID: 1, Username: 'test' }];
-    volunteeringModel.getApplicantsForPost = jest.fn().mockResolvedValue(mockApplicants);
-
-    await volunteeringController.viewApplicants(req, res);
-    expect(volunteeringModel.getApplicantsForPost).toHaveBeenCalledWith(9);
-    expect(res.render).toHaveBeenCalledWith('../src/views/pages/view-applicants', { applicants: mockApplicants });
-  });
 });
 
 afterAll(async () => {

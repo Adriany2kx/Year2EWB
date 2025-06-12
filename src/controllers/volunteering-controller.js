@@ -123,17 +123,6 @@ async function handleDeleteEvent(req, res) {
     }
 }
 
-async function viewApplicants(req, res) {
-    const postId = parseInt(req.params.id);
-    try {
-        const applicants = await volunteeringModel.getApplicantsForPost(postId);
-        res.render('../src/views/pages/view-applicants', { applicants });
-    } catch (err) {
-        console.error('Error fetching applicants:', err);
-        res.status(500).send('Internal Server Error');
-    }
-}
-
 
 module.exports = {
     renderVolunteeringPage,
@@ -141,5 +130,4 @@ module.exports = {
     handleUnjoinEvent,
     handleCreate,
     handleDeleteEvent,
-    viewApplicants
 };

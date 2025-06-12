@@ -14,7 +14,6 @@ router.post('/join/:id', volunteeringController.handleJoinEvent);
 router.post('/create', volunteeringController.handleCreate);
 router.post('/unjoin/:id', volunteeringController.handleUnjoinEvent);
 router.post('/delete/:id', volunteeringController.handleDeleteEvent);
-router.get('/view-applicants/:id', volunteeringController.viewApplicants);
 
 
 module.exports = router;
