@@ -5,9 +5,7 @@ const volunteeringController = require('../controllers/volunteering-controller')
 const volunteeringModel = require('../models/volunteering-model');
 
 
-// -----------------------
 // INTEGRATION TESTS
-// -----------------------
 
 describe('integration - /volunteering endpoints', () => {
   let createdPostID = null;
@@ -81,9 +79,7 @@ describe('integration - /volunteering endpoints', () => {
   });
 });
 
-// -----------------------
 // UNIT TESTS- MODEL
-// -----------------------
 
 describe('unit - volunteering model functions', () => {
     beforeEach(async () => {
@@ -231,9 +227,7 @@ describe('unit - volunteering model functions', () => {
     });
   });
 
-// -----------------------
 // UNIT TESTS - CONTROLLER
-// -----------------------
 
 describe('unit - volunteering controller functions', () => {
   const createMockRes = () => {
