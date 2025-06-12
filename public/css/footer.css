@@ -74,6 +74,97 @@
     color: #e6c9a8;
 }
 
+#language {
+  z-index: 1000;
+  width: 40%;
+  min-width: 25%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+#language::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#language legend {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #1a365d;
+  text-align: center;
+}
+
+#language .field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#language .field label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#language input[type="radio"] {
+  margin: 0;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+#language button[type="submit"] {
+  background-color: #1a365d;
+  color: white;
+  border: 1px solid #1a365d;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+#language button[type="submit"]:hover {
+  background-color: white;
+  color: #1a365d;
+}
+
+#language button[type="button"] {
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  color: #1a365d;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#language button[type="button"]:hover {
+  background-color: white;
+}
+
+#changeLanguage {
+  background-color: #1a365d;
+  border: none;
+  margin: 0;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
 @media (max-width: 768px) {
     .footer-content {
         grid-template-columns: 1fr;
