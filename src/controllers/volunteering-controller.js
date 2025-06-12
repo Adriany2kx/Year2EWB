@@ -8,6 +8,8 @@ async function renderVolunteeringPage(req, res) {
     const searchTerm = rawSearch.toLowerCase();
     const filterOption = req.query.filter || 'Default';
     const viewFilter = req.query.view || 'all';
+    const language = res.locals.language;
+    const volunteering = require(`../json/${language}/volunteering.json`);
 
     try {
         let events = await volunteeringModel.getAllVolunteerEvents(userId);
@@ -42,6 +44,7 @@ async function renderVolunteeringPage(req, res) {
         }
 
         res.render('../src/views/pages/volunteering', {
+            volunteering,
             volunteeringEvents: events,
             searchTerm,
             filterOption,

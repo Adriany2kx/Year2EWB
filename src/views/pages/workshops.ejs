@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/navigation.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="/js/post-workshop.js" defer></script>
-    <title>Workshops</title>
+    <title>Make Connect</title>
 </head>
 <body>
     <%- include('../common/navigation.ejs') %>
@@ -45,7 +46,7 @@
         </dialog>
         <div id="workshop-section-wrapper">
             <div id="workshop-header">
-                <h1>Workshops board</h1>
+                <h1><%= workshops.headerTitle %></h1>
                 <button id="createWorkshop" type="button"><%= workshops.createButton %></button>
             </div>
             <div id="search-container">

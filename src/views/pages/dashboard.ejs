@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/dashboard.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <title>Make Connect</title>
-    </head>
-    <body>
-        <%- include('../common/navigation.ejs') %>
-        <main>
-            <section class="dashboard">
-                <h1>Welcome, <%= user ? user.Username : 'Guest' %>!</h1>
-                <div class="dashboard-options">
-                    <div class="option">
-                        <img src="/images/beer2.png" alt="Browse Jobs">
-                        <h2><a href="/jobs">Browse Jobs</a></h2>
-                        <p>Find local employment opportunities</p>
-                    </div>
-                    <div class="option">
-                        <img src="/images/beer4.png" alt="Join Volunteering">
-                        <h2><a href="/volunteering">Join Volunteering</a></h2>
-                        <p>Give back to your community</p>
-                    </div>
-                    <div class="option">
-                        <img src="/images/beer3.png" alt="Upcoming Workshops">
-                        <h2><a href="/workshops">Upcoming Workshops</a></h2>
-                        <p>Learn new skills and grow</p>
-                    </div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Make Connect</title>
+</head>
+<body>
+    <%- include('../common/navigation.ejs') %>
+    <main>
+        <section class="dashboard">
+            <h1><%= dashboard.welcome %> <%= user.Username %></h1>
+            <div class="dashboard-options">
+                <div class="option">
+                    <img src="/images/beer2.png" alt="<%= dashboard.browseJobs %>">
+                    <h2><a href="/jobs"><%= dashboard.browseJobs %></a></h2>
+                    <p><%= dashboard.browseJobsDescription %></p>
                 </div>
-                <section class="activity">
-                    <h2>Your Activity</h2>
-                    <div class="activity-item">
-                        <p><%= user && user.application ? user.application : 0 %>, Applications</p>
-                    </div>
-                    <div class="activity-item">
-                        <p><%= user && user.volunteers ? user.volunteers : 0 %> ,Volunteers</p>
-                    </div>
-                </section>
+                <div class="option">
+                    <img src="/images/beer4.png" alt="<%= dashboard.joinVolunteering %>">
+                    <h2><a href="/volunteering"><%= dashboard.joinVolunteering %></a></h2>
+                    <p><%= dashboard.joinVolunteeringDescription %></p>
+                </div>
+                <div class="option">
+                    <img src="/images/beer3.png" alt="<%= dashboard.upcomingWorkshops %>">
+                    <h2><a href="/workshops"><%= dashboard.upcomingWorkshops %></a></h2>
+                    <p><%= dashboard.upcomingWorkshopsDescription %></p>
+                </div>
+            </div>
+            <section class="activity">
+                <h2><%= dashboard.yourActivity %></h2>
+                <div class="activity-item">
+                    <p><%= (user && user.application) || 0 %>, <%= dashboard.applicationsLabel %></p>
+                </div>
+                <div class="activity-item">
+                    <p><%= (user && user.volunteers) || 0 %>, <%= dashboard.volunteersLabel %></p>
+                </div>
             </section>
-        </main>
-        <%- include('../common/footer.ejs') %>
-    </body>
+        </section>
+    </main>
+    <%- include('../common/footer.ejs') %>
+</body>
 </html>

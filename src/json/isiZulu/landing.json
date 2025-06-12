@@ -1,1 +1,13 @@
-{}
+{
+  "welcome": "Siyakwamukela ku-Make Connect!",
+  "description": "Isikhungo sakho esiku-inthanethi esikusiza ukuthola uxhumano nomphakathi wakini nakakhulu.",
+  "tagline": "Sikukhuthaza ikusasa lakho, isinyathelo ngesinyathelo.",
+  "signupButton": "Bhalisa",
+  "loginButton": "Ngena",
+  "jobTitle": "Imisebenzi",
+  "jobDescription": "Bheka amathuba emisebenzi ahambisana namakhono nezintshisekelo zakho.",
+  "workshopsTitle": "Izifundo",
+  "workshopsDescription": "Hlanganyela ezifundweni ezenzelwe ukuthuthukisa ulwazi namakhono akho.",
+  "volunteeringTitle": "Ukuzithandela",
+  "volunteeringDescription": "Yenza umehluko emphakathini wakho ngokuhlanganyela ezinhlelweni zokuzithandela."
+}

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/landing.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-        <title>Make Connect</title>
-    </head>
-    <body>
-        <%- include('../common/navigation.ejs') %>
-        <main>
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Welcome to Make Connect!</h1>
-                    <p>Your online hub that help you find connetions with your local community and more.</p>
-                    <p><i>Empowering your future, one step at a time.</i></p>
-                    <a href="/users/signup" class="btn">Sign Up</a>
-                    <a href="/users/login" class="btn">Login</a>
-                </div>
-            </section>
-            <section class="items">
-                <div class="item">
-                    <h2>Job</h2>
-                    <p>Browse a wide range of job opportunities tailored to your skills and interests.</p>
-                </div>
-                <div class="item">
-                    <h2>Workshops</h2>
-                    <p>Participate in hands-on workshops designed to enhance your knowledge and skills.</p>
-                </div>
-                <div class="item">
-                    <h2>Volunteering</h2>
-                    <p>Make a difference in your community by joining our volunteering programs.</p>
-                </div>
-            </section>
-        </main>
-        <%- include('../common/footer.ejs') %>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title><%= landing.title %></title>
+</head>
+<body>
+    <%- include('../common/navigation.ejs') %>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1><%= landing.welcome %></h1>
+                <p><%= landing.description %></p>
+                <p><i><%= landing.tagline %></i></p>
+                <a href="/users/signup" class="btn"><%= landing.signupButton %></a>
+                <a href="/users/login" class="btn"><%= landing.loginButton %></a>
+            </div>
+        </section>
+        <section class="items">
+            <div class="item">
+                <h2><%= landing.jobTitle %></h2>
+                <p><%= landing.jobDescription %></p>
+            </div>
+            <div class="item">
+                <h2><%= landing.workshopsTitle %></h2>
+                <p><%= landing.workshopsDescription %></p>
+            </div>
+            <div class="item">
+                <h2><%= landing.volunteeringTitle %></h2>
+                <p><%= landing.volunteeringDescription %></p>
+            </div>
+        </section>
+    </main>
+    <%- include('../common/footer.ejs') %>
+</body>
 </html>

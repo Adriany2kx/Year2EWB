@@ -1,1 +1,12 @@
-{}
+{
+  "welcome": "Welcome",
+  "browseJobs": "Browse Jobs",
+  "browseJobsDescription": "Find local employment opportunities",
+  "joinVolunteering": "Join Volunteering",
+  "joinVolunteeringDescription": "Give back to your community",
+  "upcomingWorkshops": "Upcoming Workshops",
+  "upcomingWorkshopsDescription": "Learn new skills and grow",
+  "yourActivity": "Your Activity",
+  "applicationsLabel": "Applications",
+  "volunteersLabel": "Volunteers"
+}

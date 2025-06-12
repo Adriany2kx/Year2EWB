@@ -1,1 +1,12 @@
-{}
+{
+  "welcome": "Siyakwamukela",
+  "browseJobs": "Bheka Imisebenzi",
+  "browseJobsDescription": "Thola amathuba emisebenzi endaweni yangakini",
+  "joinVolunteering": "Joyina Ukuzenzela Umphakathi",
+  "joinVolunteeringDescription": "Nikeza emiphakathini yakho",
+  "upcomingWorkshops": "Izifundo Ezizayo",
+  "upcomingWorkshopsDescription": "Funda amakhono amasha futhi ukhule",
+  "yourActivity": "Imisebenzi Yakho",
+  "applicationsLabel": "Izicelo",
+  "volunteersLabel": "Abazenzelayo Umphakathi"
+}

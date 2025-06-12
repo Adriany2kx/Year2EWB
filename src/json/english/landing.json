@@ -1,1 +1,13 @@
-{}
+{
+  "welcome": "Welcome to Make Connect!",
+  "description": "Your online hub that help you find connetions with your local community and more.",
+  "tagline": "Empowering your future, one step at a time.",
+  "signupButton": "Sign Up",
+  "loginButton": "Login",
+  "jobTitle": "Job",
+  "jobDescription": "Browse a wide range of job opportunities tailored to your skills and interests.",
+  "workshopsTitle": "Workshops",
+  "workshopsDescription": "Participate in hands-on workshops designed to enhance your knowledge and skills.",
+  "volunteeringTitle": "Volunteering",
+  "volunteeringDescription": "Make a difference in your community by joining our volunteering programs."
+}
