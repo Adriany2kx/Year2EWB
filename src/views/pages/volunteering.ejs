@@ -14,13 +14,14 @@
 <%- include('../common/navigation.ejs') %>
 
 <main>
+    <!-- header + create button -->
     <div id="volunteerDisplayContainer">
         <div id="volunteer-header">
             <h1><%= volunteering.pageTitle %></h1>
             <button class="create-btn" id="createVolunteerBtn"><%= volunteering.createButton %></button>
         </div>
 
-        <!-- Search and Filter -->
+        <!-- search and filter -->
         <div id="search-container">
             <form method="GET" id="volunteerSearchForm">
                 <input 
@@ -45,11 +46,14 @@
                     <option value="unjoined" <%= viewFilter === 'unjoined' ? 'selected' : '' %>><%= volunteering.viewUnjoined %></option>
                 </select>
 
+                <!--filters + search only applied when search button clicked-->
                 <button type="submit"><%= volunteering.searchButton %></button>
+                <!--results + filters only reset when clear button pressed-->
                 <button type="button" id="clearSearchBtn"><%= volunteering.clearSearchButton %></button>
             </form>
         </div>
 
+        <!-- buttons to switch between listings + opportunities-->
         <div style="margin-bottom: 1rem;">
             <button class="filter-btn active" data-view="mine"><%= volunteering.yourListingsButton %></button>
             <button class="filter-btn" data-view="others"><%= volunteering.opportunitiesButton %></button>
@@ -57,13 +61,14 @@
         </div>
 
         <% if (volunteeringEvents.length === 0) { %>
-            <p><%= volunteering.noEventsMessage %></p>
+            <p><%= volunteering.noEventsMessage %></p> <!--show message if no events-->
         <% } else { %>
             <% volunteeringEvents.forEach(event => { %>
                 <% const isExpired = new Date(event.ApplyBy) < new Date(); %>
                 <div class="volunteering-card <%= event.CreatorID === user.UserID ? 'mine' : 'others' %> <%= isExpired ? 'expired' : '' %>">
                     <h3>
                         <%= event.Title %>
+                        <!--user created event-->
                         <% if (event.CreatorID === user.UserID && !isExpired) { %>
                             <span>⭐</span>
                             <button 
@@ -79,9 +84,10 @@
                     <div id="applicants-<%= event.PostID %>" style="display: none; margin-top: 1em;">
                         <% const list = applicantMap[event.PostID] || []; %>
                         <% if (list.length === 0) { %>
-                            <p><%= volunteering.noApplicantsMessage %></p>
+                            <p><%= volunteering.noApplicantsMessage %></p> <!--message for when no one has applied yet-->
                         <% } else { %>
                             <ul>
+                                <!--showing volunteer applicant details-->
                                 <% list.forEach(a => { %>
                                     <li>
                                         <strong><%= a.Forename %> <%= a.Surname %></strong>
@@ -97,6 +103,7 @@
                     <p><strong><%= volunteering.formStartDate %>:</strong> <%= new Date(event.StartDate).toLocaleDateString() %></p>
                     <p><strong>Points:</strong> <%= event.Points %></p>
 
+                    <!--if user created post- show delete button instead of join/unjoin-->
                     <% if (event.CreatorID === user.UserID) { %>
                         <form method="POST" action="/volunteering/delete/<%= event.PostID %>">
                             <button type="submit"><%= volunteering.deleteButton %></button>
@@ -105,6 +112,7 @@
                         <% if (isExpired) { %>
                             <p class="expired-label"><%= volunteering.expiredLabel %></p>
                         <% } else { %>
+                            <!--join button switching- show join if event not joined yet and vice versa.-->
                             <% if (event.joined) { %>
                                 <form method="POST" action="/volunteering/unjoin/<%= event.PostID %>">
                                     <button type="submit"><%= volunteering.unjoinButton %></button>
@@ -121,7 +129,7 @@
         <% } %>
     </div>
 
-    <!-- Volunteer Creation Form -->
+    <!-- hidden volunteer creation form- show when '+' button clicked -->
     <div id="volunteerCreateForm" style="display: none;">
         <form method="POST" action="/volunteering/create" class="volunteer-form">
             <div class="field">

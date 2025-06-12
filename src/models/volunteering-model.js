@@ -1,5 +1,6 @@
 const db = require('../config/db');
 
+//retrieve 'volunteer' type posts and check if user has joined each one 
 async function getAllVolunteerEvents(userId) {
     const query = `
         SELECT p.PostID, p.Title, p.Description, p.Location, p.StartDate, p.ApplyBy, v.Points,
@@ -14,6 +15,7 @@ async function getAllVolunteerEvents(userId) {
     return rows;
 }
 
+//add user to volunteer post and update points
 async function joinVolunteerEvent(userId, postId) {
     const checkQuery = `SELECT * FROM synoptic.Application WHERE UserID = ? AND PostID = ?;`;
     const insertQuery = `INSERT INTO synoptic.Application (UserID, PostID) VALUES (?, ?);`;
@@ -28,11 +30,12 @@ async function joinVolunteerEvent(userId, postId) {
     if (checkRows.length === 0) {
         await db.query(insertQuery, [userId, postId]);
         const [pointsRes] = await db.query(pointsQuery, [postId]);
-        const points = pointsRes[0]?.Points || 0;
+        const points = pointsRes[0]?.Points || 0; //default 0 points if not provided for that post
         await db.query(updatePointsQuery, [points, userId]);
     }
 }
 
+//create volunteer type post
 async function createVolunteerEvent(data) {
     const postInsertQuery = `
         INSERT INTO synoptic.Post (UserID, Title, Description, Location, StartDate, ApplyBy, Type)
@@ -55,6 +58,7 @@ async function createVolunteerEvent(data) {
     await db.query(volunteerInsertQuery, [postId, data.startDate, data.points]);
 }
 
+//lets user leave volunteer post and deducts points 
 async function unjoinVolunteerEvent(userId, postId) {
     const deleteQuery = `DELETE FROM synoptic.Application WHERE UserID = ? AND PostID = ?`;
     const pointsQuery = `SELECT Points FROM synoptic.Volunteer WHERE PostID = ?`;
@@ -70,15 +74,18 @@ async function unjoinVolunteerEvent(userId, postId) {
     await db.query(updatePointsQuery, [points, userId]);
 }
 
+//retrieve data for each post- check who posted it before allowing deletion
 async function getVolunteerPost(postId) {
     const [rows] = await db.query(`SELECT * FROM synoptic.Post WHERE PostID = ?`, [postId]);
     return rows[0];
 }
 
+//delete volunteering post
 async function deleteVolunteerEvent(postId) {
     await db.query(`DELETE FROM synoptic.Post WHERE PostID = ?`, [postId]);
 }
 
+//get list of all users who have applied for a volunteering post
 async function getApplicantsForPost(postId) {
     const query = `
         SELECT u.UserID, u.Forename, u.Surname, u.Username, u.CredibilityPoints, a.DateApplied
@@ -90,8 +97,6 @@ async function getApplicantsForPost(postId) {
     const [rows] = await db.query(query, [postId]);
     return rows;
 }
-
-
 
 module.exports = {
     getAllVolunteerEvents,

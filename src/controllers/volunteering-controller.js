@@ -1,5 +1,6 @@
 const volunteeringModel = require('../models/volunteering-model');
 
+//load and show page with data
 async function renderVolunteeringPage(req, res) {
     if (!res.locals.loggedIn) return res.redirect('/users/login');
 
@@ -14,6 +15,7 @@ async function renderVolunteeringPage(req, res) {
     try {
         let events = await volunteeringModel.getAllVolunteerEvents(userId);
 
+        //if search term provided- filter events by title/description
         if (searchTerm) {
             events = events.filter(event =>
                 event.Title.toLowerCase().includes(searchTerm) ||
@@ -21,12 +23,14 @@ async function renderVolunteeringPage(req, res) {
             );
         }
 
+        //filter view: joined, unjoined, or all
         if (viewFilter === 'joined') {
             events = events.filter(e => e.joined);
         } else if (viewFilter === 'unjoined') {
             events = events.filter(e => !e.joined);
         }
 
+        //sorting events by selected filter option
         if (filterOption === 'StartDate') {
             events.sort((a, b) => new Date(a.StartDate) - new Date(b.StartDate));
         } else if (filterOption === 'Location') {
@@ -35,6 +39,7 @@ async function renderVolunteeringPage(req, res) {
             events.sort((a, b) => b.Points - a.Points);
         }
 
+        //for events created by current user- retrieve list of applicants and store in dictionary 
         const applicantMap = {};
         for (const event of events) {
             if (event.CreatorID === userId) {
@@ -59,8 +64,7 @@ async function renderVolunteeringPage(req, res) {
     }
 }
 
-
-
+//pass user and post ID to join event 
 async function handleJoinEvent(req, res) {
     if (!res.locals.loggedIn) return res.redirect('/users/login');
     const userId = req.session.user.UserID;
@@ -74,6 +78,7 @@ async function handleJoinEvent(req, res) {
     }
 }
 
+//retrieve form details from POST req and pass data to create event
 async function handleCreate(req, res) {
     const { title, description, location, startDate, applyBy, points } = req.body;
     const userId = req.session.user.UserID;
@@ -94,6 +99,7 @@ async function handleCreate(req, res) {
     }
 }
 
+//pass user and post ID to unjoin event
 async function handleUnjoinEvent(req, res) {
     if (!res.locals.loggedIn) return res.redirect('/users/login');
     const userId = req.session.user.UserID;
@@ -107,6 +113,7 @@ async function handleUnjoinEvent(req, res) {
     }
 }
 
+//check current user ID and only allow creator of post to delete
 async function handleDeleteEvent(req, res) {
     const postId = parseInt(req.params.id);
     const userId = req.session.user.UserID;
@@ -122,7 +129,6 @@ async function handleDeleteEvent(req, res) {
         res.status(500).send('Internal Server Error');
     }
 }
-
 
 module.exports = {
     renderVolunteeringPage,
