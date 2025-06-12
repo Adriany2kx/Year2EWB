@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/volunteering.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <script src="/js/volunteering.js" defer></script>
@@ -14,43 +14,12 @@
 <%- include('../common/navigation.ejs') %>
 
 <main>
-    <h1><%= volunteering.pageTitle %></h1>
-
-    <button class="create-btn" id="createVolunteerBtn"><%= volunteering.createButton %></button>
-
-    <!-- Volunteer Creation Form -->
-    <div id="volunteerCreateForm" style="display: none; margin: 1em 0;">
-        <form method="POST" action="/volunteering/create" class="volunteer-form">
-            <div class="field">
-                <label for="title"><%= volunteering.formTitle %></label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div class="field">
-                <label for="description"><%= volunteering.formDescription %></label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-            <div class="field">
-                <label for="location"><%= volunteering.formLocation %></label>
-                <input type="text" id="location" name="location" required>
-            </div>
-            <div class="field">
-                <label for="startDate"><%= volunteering.formStartDate %></label>
-                <input type="date" id="startDate" name="startDate" required>
-            </div>
-            <div class="field">
-                <label for="applyBy"><%= volunteering.formApplyBy %></label>
-                <input type="date" id="applyBy" name="applyBy" required>
-            </div>
-            <div class="field">
-                <label for="points"><%= volunteering.formPoints %></label>
-                <input type="number" id="points" name="points" required>
-            </div>
-            <button type="submit"><%= volunteering.searchButton %></button>
-            <button type="button" id="cancelCreateBtn"><%= volunteering.cancelButton %></button>
-        </form>
-    </div>
-
     <div id="volunteerDisplayContainer">
+        <div id="volunteer-header">
+            <h1><%= volunteering.pageTitle %></h1>
+            <button class="create-btn" id="createVolunteerBtn"><%= volunteering.createButton %></button>
+        </div>
+
         <!-- Search and Filter -->
         <div id="search-container">
             <form method="GET" id="volunteerSearchForm">
@@ -150,6 +119,38 @@
                 </div>
             <% }) %>
         <% } %>
+    </div>
+
+    <!-- Volunteer Creation Form -->
+    <div id="volunteerCreateForm" style="display: none;">
+        <form method="POST" action="/volunteering/create" class="volunteer-form">
+            <div class="field">
+                <label for="title"><%= volunteering.formTitle %></label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="field">
+                <label for="description"><%= volunteering.formDescription %></label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="field">
+                <label for="location"><%= volunteering.formLocation %></label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="field">
+                <label for="startDate"><%= volunteering.formStartDate %></label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div class="field">
+                <label for="applyBy"><%= volunteering.formApplyBy %></label>
+                <input type="date" id="applyBy" name="applyBy" required>
+            </div>
+            <div class="field">
+                <label for="points"><%= volunteering.formPoints %></label>
+                <input type="number" id="points" name="points" required>
+            </div>
+            <button type="submit"><%= volunteering.formCreateButton %></button>
+            <button type="button" id="cancelCreateBtn"><%= volunteering.cancelButton %></button>
+        </form>
     </div>
 </main>
 

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Make Connect</title>
+    <title>Makers Hub</title>
     <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 <body
@@ -16,22 +18,11 @@
 %>
   data-modal-to-open="<%= modalToOpen %>">
 
+    <%- include('../common/navigation.ejs') %>
+
     <div class="container">
         <div class="header">
             <h1><%= profile.pageTitle %></h1>
-            <button id="hamburger" class="nav-btn" aria-label="Open navigation">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <nav id="dropdownNav" class="dropdown-nav">
-                <ul class="nav-list">
-                    <li><a href="/"><%= profile.navigationHome %></a></li>
-                    <li><a href="/jobs"><%= profile.navigationJobs %></a></li>
-                    <li><a href="/workshops"><%= profile.navigationWorkshops %></a></li>
-                    <li><a href="/volunteering"><%= profile.navigationVolunteering %></a></li>
-                    <li><a href="/profile"><%= profile.navigationProfile %></a></li>
-                    <li><a href="/users/logout"><%= profile.navigationLogout %></a></li>
-                </ul>
-            </nav>
         </div>
 
         <div class="profile-pic">
@@ -187,6 +178,8 @@
             </form>
         </div>
     </div>
+
+    <%- include('../common/footer.ejs') %>
 
     <script src="/js/profile.js"></script>
     <script src="/js/keepEditProfileModalOpen.js"></script>

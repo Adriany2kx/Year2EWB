@@ -2,6 +2,7 @@ const request = require('supertest');
 const session = require('supertest-session');
 const app = require('../../app');
 
+// mock job-controller methods
 jest.mock('../controllers/job-controller', () => ({
   fetchFiltered: jest.fn().mockResolvedValue([
     {
@@ -22,7 +23,7 @@ jest.mock('../controllers/job-controller', () => ({
 describe('Jobs route via app.js', () => {
   let testSession;
 
-  beforeAll(() => {
+  beforeEach(() => {
     testSession = session(app);
   });
 
@@ -34,16 +35,17 @@ describe('Jobs route via app.js', () => {
   it('Renders job listings when user is logged in', async () => {
     const res = await testSession
       .get('/jobs')
-      .set('x-test-login', 'true');  // Triggers fake login middleware in app.js
+      .set('x-test-login', 'true');  // triggers fake login middleware in app.js
     expect(res.statusCode).toBe(200);
     expect(res.text).toContain('Test Job');
-    expect(res.text).toContain('Jobs board');
+    expect(res.text).toMatch(/jobs board/i);  // case-insensitive match
   });
 
   it('Handles job post submission', async () => {
     const res = await testSession
       .post('/jobs')
       .set('x-test-login', 'true')
+      .type('form')
       .send({
         Title: 'Test Job',
         Description: 'This is a test job',
@@ -54,9 +56,8 @@ describe('Jobs route via app.js', () => {
         Contract: 'Part-time',
         WeeklyHours: 25,
         Email: 'test@gmail.com'
-    });
+      });
     expect(res.statusCode).toBe(302);
     expect(res.headers.location).toBe('/jobs');
   });
 });
-

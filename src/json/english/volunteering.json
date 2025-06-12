@@ -1,6 +1,7 @@
 {
   "pageTitle": "Volunteering Opportunities",
   "createButton": "+",
+  "formCreateButton": "Create",
   "cancelButton": "Cancel",
   "formTitle": "Title",
   "formDescription": "Description",

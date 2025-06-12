@@ -142,25 +142,35 @@ describe('unit - workshop controller/model', () => {
   });
 
   test('deleteWorkshop removes both workshop and post', async () => {
-    // add a dummy to delete
+    // create the post that workshop depends on
     const [postRes] = await db.execute(
-      `INSERT INTO Post (UserID, Title, Description, Location, StartDate, ApplyBy, Type) VALUES (?, ?, ?, ?, ?, ?, 'Workshop')`,
+      `INSERT INTO Post (UserID, Title, Description, Location, StartDate, ApplyBy, Type)
+       VALUES (?, ?, ?, ?, ?, ?, 'Workshop')`,
       [1, 'delete_me', 'desc', 'somewhere', '2102-01-01', '2102-01-01']
     );
 
-    let postID = postRes.insertId;
-    if (!postID) {
-      const [row] = await db.query('SELECT PostID FROM Post WHERE Title = "delete_me"');
-      postID = row[0].PostID;
-    }
+    // confirm postID exists
+    const postID = postRes.insertId;
+    expect(postID).toBeDefined();
 
+    // make sure the post row actually exists in DB
+    const [verifyPost] = await db.query('SELECT * FROM Post WHERE PostID = ?', [postID]);
+    expect(verifyPost.length).toBe(1);
+
+    // now insert into Workshop table using valid postID
     await workshopModel.createWorkshop(postID, '2102-01-01', 2);
 
+    // verify workshop was inserted
+    const [verifyWorkshop] = await db.query('SELECT * FROM Workshop WHERE PostID = ?', [postID]);
+    expect(verifyWorkshop.length).toBe(1);
+
+    // now delete it
     await workshopModel.deleteWorkshop(postID);
 
-    // check both are gone
+    // confirm both workshop and post are deleted
     const [wRows] = await db.query('SELECT * FROM Workshop WHERE PostID = ?', [postID]);
     expect(wRows.length).toBe(0);
+
     const [pRows] = await db.query('SELECT * FROM Post WHERE PostID = ?', [postID]);
     expect(pRows.length).toBe(0);
   });

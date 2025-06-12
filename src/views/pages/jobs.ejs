@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/jobs.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <script src="/js/post-job.js" defer></script>
-    <title>Make Connect</title>
+    <title>Makers Hub</title>
 </head>
 <body>
     <%- include('../common/navigation.ejs') %>
@@ -75,22 +75,24 @@
             </div>
             <div id="job-container">
                 <% if (jobVacancies && jobVacancies.length > 0) { %>
-                    <% jobVacancies.forEach(job => { %>
-                        <a href="mailto:<%= encodeURIComponent(job.Email) %>" class="job-box" title="<%= jobs.emailTitle %>">
-                            <h3><%= job.Title %></h3>
-                            <p><%= job.Description.length > 100 ? job.Description.substring(0, 100) + '...' : job.Description %></p>
-                            <p><strong><%= jobs.cardLocation %>:</strong> <%= job.Location %></p>
-                            <p><strong><%= jobs.cardStartDate %>:</strong> <%= new Date(job.StartDate).toLocaleDateString() %></p>
-                            <p><strong><%= jobs.cardApplyBy %>:</strong> <%= new Date(job.ApplyBy).toLocaleDateString() %></p>
-                            <p><strong><%= jobs.cardRate %>:</strong> R<%= job.HourlyRate %>/hr</p>
-                            <p><strong><%= jobs.cardContract %>:</strong> <%= job.Contract %></p>
-                            <p><strong><%= jobs.cardWeeklyHours %>:</strong> <%= job.WeeklyHours || jobs.cardWeeklyHoursNone %></p>
-                        </a>
-                    <% }) %>
+                  <% jobVacancies.forEach(job => { %>
+                    <a href="mailto:<%= encodeURIComponent(job.Email) %>" class="job-box" title="<%= jobs.emailTitle %>">
+                      <h3><%= job.Title %></h3>
+                      <p class="job-desc"><%= job.Description.length > 100 ? job.Description.substring(0, 100) + '...' : job.Description %></p>
+                      <div class="job-fields-grid">
+                        <p class="job-field"><strong><%= jobs.cardLocation %>:</strong> <%= job.Location %></p>
+                        <p class="job-field"><strong><%= jobs.cardStartDate %>:</strong> <%= new Date(job.StartDate).toLocaleDateString() %></p>
+                        <p class="job-field"><strong><%= jobs.cardApplyBy %>:</strong> <%= new Date(job.ApplyBy).toLocaleDateString() %></p>
+                        <p class="job-field"><strong><%= jobs.cardRate %>:</strong> R<%= job.HourlyRate %>/hr</p>
+                        <p class="job-field"><strong><%= jobs.cardContract %>:</strong> <%= job.Contract %></p>
+                        <p class="job-field"><strong><%= jobs.cardWeeklyHours %>:</strong> <%= job.WeeklyHours || jobs.cardWeeklyHoursNone %></p>
+                      </div>
+                    </a>
+                  <% }) %>
                 <% } else { %>
-                    <p><%= jobs.noJobsFound %></p>
+                  <p><%= jobs.noJobsFound %></p>
                 <% } %>
-            </div>
+              </div>
         </div>
     </main>
     <%- include('../common/footer.ejs') %>

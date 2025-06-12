@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/landing.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/navigation.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <title><%= landing.title %></title>
-</head>
-<body>
-    <%- include('../common/navigation.ejs') %>
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1><%= landing.welcome %></h1>
-                <p><%= landing.description %></p>
-                <p><i><%= landing.tagline %></i></p>
-                <a href="/users/signup" class="btn"><%= landing.signupButton %></a>
-                <a href="/users/login" class="btn"><%= landing.loginButton %></a>
-            </div>
-        </section>
-        <section class="items">
-            <div class="item">
-                <h2><%= landing.jobTitle %></h2>
-                <p><%= landing.jobDescription %></p>
-            </div>
-            <div class="item">
-                <h2><%= landing.workshopsTitle %></h2>
-                <p><%= landing.workshopsDescription %></p>
-            </div>
-            <div class="item">
-                <h2><%= landing.volunteeringTitle %></h2>
-                <p><%= landing.volunteeringDescription %></p>
-            </div>
-        </section>
-    </main>
-    <%- include('../common/footer.ejs') %>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Makers Hub</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/navbar.css">
+        <link rel="stylesheet" href="/css/landing.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <body>
+        <%- include('../common/navigation.ejs') %>
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1><%= landing.welcome %></h1>
+                    <p class="hero-subtitle"><%= landing.description %></p>
+                    <p class="hero-tagline"><i><%= landing.tagline %></i></p>
+                    <div class="hero-buttons">
+                        <a href="/users/signup" class="btn btn-primary"><%= landing.signupButton %> <i class="fas fa-arrow-right"></i></a>
+                        <a href="/users/login" class="btn btn-secondary"><%= landing.loginButton %> <i class="fas fa-sign-in-alt"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-users fa-6x"></i>
+                </div>
+            </section>
+            <section class="features">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="item">
+                        <i class="fas fa-briefcase"></i>
+                        <h3><%= landing.jobTitle %></h3>
+                        <p><%= landing.jobDescription %></p>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3><%= landing.volunteeringTitle %></h3>
+                        <p><%= landing.volunteeringDescription %></p>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3><%= landing.workshopsTitle %></h3>
+                        <p><%= landing.workshopsDescription %></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <%- include('../common/footer.ejs') %>
+    </body>
 </html>

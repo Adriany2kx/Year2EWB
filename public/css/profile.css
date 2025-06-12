@@ -1,481 +1,353 @@
-/* ========== Base Reset ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
-  background-color: #f7f9fa;
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
   color: #1d1d1f;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
-/* ========== Containers ========== */
-.container,
-.signup-container {
+.container {
   width: 100%;
-  max-width: 480px;
-  padding: 1rem;
-  box-sizing: border-box;
-  margin: 0 auto;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #f5f5dc;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e6c9a8;
 }
 
-/* ========== Header ========== */
 .header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  max-width: 480px;
-  margin-bottom: 1rem;
-  background: #fff;
-  z-index: 101;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .header h1 {
-  font-size: 2rem;
-  flex: 1;
-  text-align: left;
-  margin-left: 1rem;
+  font-size: 2.5rem;
+  color: #1a365d;
+  margin-bottom: 1rem;
 }
 
-.nav-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  font-size: 2rem;
-  color: #4a914a;
-  transition: color 0.2s;
-  margin-left: auto;
-}
-
-.nav-btn.open,
-.nav-btn:active,
-.nav-btn:focus {
-  color: #4a914a;
-}
-
-/* Dropdown nav styles: match width of buttons, right-aligned */
-.dropdown-nav {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 180px;
-  background: #fff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: max-height 0.35s cubic-bezier(.4,2,.6,1), opacity 0.25s;
-  z-index: 100;
-}
-
-.dropdown-nav.open {
-  max-height: 400px;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0.3rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.nav-list li a {
-  color: #4a914a;
-  font-size: 1.05rem;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.7rem 1.2rem;
-  border-radius: 7px;
-  transition: background 0.2s, color 0.2s;
-  display: block;
-  background: #fff;
-}
-
-.nav-list li a:hover,
-.nav-list li a:focus {
-  background: #e6f9ed;
-  color: #4a914a;
-}
-
-/* ========== Buttons ========== */
-.settings-btn,
-.modal-close-btn,
-.profile-avatar-remove {
-  background: none;
-  border: 2px solid #4a914a;
-  cursor: pointer;
-  color: #4a914a;
-  transition: color 0.2s;
-}
-
-.settings-btn i,
-.modal-close-btn {
-  font-size: 2rem;
-}
-
-.settings-btn:hover i,
-.modal-close-btn:hover {
-  color: #4a914a;
-}
-
-/* ========== Profile Picture ========== */
 .profile-pic {
-  margin: 1.2rem 0 0.5rem;
+  margin: 1rem 0 2rem;
 }
 
 .initials {
-  background-color: #4a914a;
-  color: white;
-  font-size: 2rem;
-  width: 80px;
-  height: 80px;
+  background-color: #1a365d;
+  color: #f5f5dc;
+  font-size: 2.5rem;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(26, 54, 93, 0.2);
 }
 
-/* ========== Edit Button ========== */
-.edit-btn,
-.logout-btn,
-.profile-modal-save,
-.notification-modal-save {
-  background-color: #4a914a;
-  color: white;
-  border: 2px solid #4a914a;
+.edit-btn {
+  background-color: #1a365d;
+  color: #f5f5dc;
+  border: none;
   border-radius: 8px;
-  padding: 0.8rem 1rem;
+  padding: 1rem 2rem;
   font-size: 1.1rem;
   cursor: pointer;
-  width: 100%;
-  max-width: 320px;
-  transition: background-color 0.3s;
-  text-decoration: none;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.15);
 }
 
-.edit-btn:hover,
-.logout-btn:hover,
-.profile-modal-save:hover,
-.notification-modal-save:hover {
-  background-color: white;
-  color: black;
+.edit-btn:hover {
+  background-color: #e6c9a8;
+  color: #1a365d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
 }
 
-/* ========== Activity Section ========== */
 .activity-overview {
   width: 100%;
-  margin-top: 1.2rem;
+  margin: 2rem 0;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid #e6c9a8;
+}
+
+.activity-overview h2 {
+  color: #1a365d;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .activity-box {
   background: white;
   border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);
-  padding: 1rem;
-  margin-top: 0.5rem;
-  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.activity-box p {
+  color: #1a365d;
+  font-weight: 500;
 }
 
 .activity-box a {
-  display: block;
-  text-align: right;
-  color: #4a914a;
+  display: inline-block;
+  color: #f5f5dc;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95rem;
-  margin-top: 0.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: #1a365d;
+  transition: all 0.3s ease;
 }
 
-/* ========== Menu Buttons ========== */
+.activity-box a:hover {
+  background: #2c5282;
+  transform: translateY(-2px);
+}
+
 .menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin: 2rem 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
   width: 100%;
+  padding: 1.5rem;
+  border: 2px solid #e6c9a8;
+  border-radius: 12px;
+  background: #f8f9fa;
 }
 
 .menu-buttons button {
-  padding: 0.85rem;
+  padding: 1rem;
   background: white;
-  border: 1px solid #ddd;
+  border: 2px solid #1a365d;
   border-radius: 8px;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.3s;
-  width: 100%;
+  transition: all 0.3s ease;
+  color: #1a365d;
+  font-weight: 500;
 }
 
 .menu-buttons button:hover,
 .menu-buttons button:active,
 .menu-buttons button.selected {
-  background-color: #4a914a;
-  color: white;
+  background-color: #1a365d;
+  color: #f5f5dc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.15);
 }
 
-/* ========== Modal Overlay ========== */
+.logout-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.15);
+}
+
+.logout-btn:hover {
+  background-color: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
 .modal {
   display: none;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  overflow-y: auto;
-  padding-top: 5vh;
-}
-.modal[style*="display: flex"] {
-  display: flex !important;
-}
-
-/* ========== Modal Content ========== */
-.profile-modal-content,
-.notification-modal-content {
-  background: #fff;
-  border-radius: 12px;
   padding: 1rem;
-  max-width: 400px;
-  width: 95vw;
+}
+
+.notification-modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
   max-height: 90vh;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.5rem;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* ========== Profile Form ========== */
-.profile-modal-title,
 .modal-title {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  color: #1a365d;
+  margin-bottom: 1.5rem;
   text-align: center;
-  margin-bottom: 0.7rem;
 }
 
-.profile-avatar-upload {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.profile-avatar-img {
-  width: 56px;
-  height: 56px;
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #1a365d;
+  cursor: pointer;
+  padding: 0.5rem;
   border-radius: 50%;
-  border: 2px solid #4a914a;
-  background: #f7f9fa;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  background: #f5f5dc;
+  transform: rotate(90deg);
 }
 
 .profile-input {
   width: 100%;
-  padding: 15px;
-  background-color: #e5e7eb;
-  border: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #e5e7eb;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 .profile-input:focus {
-  outline: 2px solid #4a914a;
+  outline: none;
+  border-color: #1a365d;
+  box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
 }
 
-.profile-note,
-.notification-note {
-  font-size: 0.95rem;
-  color: #888;
-}
-
-/* ========== Linked Accounts ========== */
-.profile-linked-accounts {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-.profile-linked-btn {
-  background: #f7f9fa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0.4rem 0.7rem;
-  font-size: 0.95rem;
-  color: #4a914a;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.profile-linked-btn:hover {
-  background: #4a914a;
-  color: white;
-}
-
-.profile-linked-btn img {
-  width: 18px;
-  height: 18px;
-}
-
-/* ========== Notification Section ========== */
-.notification-section-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #4a914a;
-  margin: 1rem 0 0.5rem;
-}
-
-.notification-btn {
-  background: #f7f9fa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0.4rem 1rem;
-  font-size: 1rem;
-  color: #4a914a;
-  cursor: pointer;
-  margin-bottom: 0.3rem;
-  transition: background 0.2s, color 0.2s;
-}
-
-.notification-btn:hover {
-  background: #4a914a;
-  color: white;
-}
-
-.notification-mute-select {
-  padding: 0.3rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-
-/* ========== Signup Form ========== */
-.signup-container {
-  padding: 2rem 1rem;
+.profile-modal-save,
+.notification-modal-save {
+  background-color: #1a365d;
+  color: #f5f5dc;
+  border: none;
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
 }
 
-.signup-container h1 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.profile-modal-save:hover,
+.notification-modal-save:hover {
+  background-color: #e6c9a8;
+  color: #1a365d;
+  transform: translateY(-2px);
 }
 
-.signup-container p {
-  color: black;
-  font-size: 0.95rem;
+.notification-group {
   margin-bottom: 1.5rem;
 }
 
-.signup-container input {
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #e5e7eb;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-}
-
-.signup-container button {
-  background-color: #4a914a;
-  border-radius: 6px;
-  color: white;
-  padding: 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-}
-
-.signup-container button:hover {
-  background-color: #4a914a;
-}
-
-.signup-footer {
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: #6b7280;
-}
-
-.signup-footer a {
-  color: #4a914a;
-  text-decoration: none;
+.notification-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a365d;
   font-weight: 500;
 }
 
-.signup-footer a:hover {
-  text-decoration: underline;
-}
-
-/* ========== Feedback Messages ========== */
-.profile-update-message {
-  padding: 0.7rem 1rem;
-  border-radius: 7px;
+.notification-btn {
+  background: #f5f5dc;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  text-align: center;
-  margin-bottom: 1rem;
+  color: #1a365d;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.profile-update-message.success {
-  background: #e6f9ed;
-  color: #4a914a;
-  border: 1px solid #b6e7c9;
+.notification-btn:hover {
+  background: #e6c9a8;
+  transform: translateY(-2px);
 }
 
-.profile-update-message.error {
-  background: #ffeaea;
-  color: #b30000;
-  border: 1px solid #ffb3b3;
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .initials {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  .menu-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-box {
+    grid-template-columns: 1fr;
+  }
+
+  .notification-modal-content {
+    padding: 1.5rem;
+  }
 }
 
-/* ========== Mobile Tweaks ========== */
-@media (max-width: 600px) {
-  .header h1 { font-size: 1.5rem; }
-  .settings-btn i { font-size: 2.4rem; }
-  .edit-btn, .logout-btn, .menu-buttons button { font-size: 0.95rem; padding: 0.75rem; }
-  .activity-box { font-size: 0.95rem; padding: 0.75rem; }
-  .profile-modal-content { padding: 0.7rem; font-size: 0.95rem; }
-  .profile-avatar-img { width: 50px; height: 50px; font-size: 1rem; }
-  .nav-list li a { font-size: 1rem; padding: 0.7rem 1.2rem; }
-  .dropdown-nav {
-    width: 90vw;
-    min-width: 160px;
-    max-width: 320px;
-    right: 0;
-    left: auto;
+@media (max-width: 480px) {
+  .container {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+  }
+
+  .initials {
+    width: 80px;
+    height: 80px;
+    font-size: 1.75rem;
+  }
+
+  .edit-btn,
+  .logout-btn {
+    width: 100%;
   }
 }

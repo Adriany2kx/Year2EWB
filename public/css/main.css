@@ -1,17 +1,35 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-html {
+    box-sizing: border-box;
+  }
+  
+  html {
     scroll-behavior: smooth;
     background-color: white;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  font-size: 18px;
-  background-color: #f8f9fa;
-  color: black;
-}
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    background-color: #F5F5DC;
+    color: #1a365d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a365d;
+  }
+  
+  main {
+    flex: 1 0 auto;
+    width: 100%;
+  }

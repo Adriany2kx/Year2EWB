@@ -28,10 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // auto-submit search when typing
+    // submit search when enter is pressde
     if (searchInput) {
-        searchInput.addEventListener("input", () => {
-            searchInput.form.submit();
+        searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault(); 
+                searchInput.form.submit();
+            }
         });
     }
 

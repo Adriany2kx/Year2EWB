@@ -1,28 +1,26 @@
-<header>
-  <nav>
-    <div class="hamburger-container">
-      <button id="hamburgerBtn" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+<nav class="navbar">
+    <div class="navbar-content">
+        <a href="/" class="logo">
+            <i class="fas fa-users"></i>
+            MAKERS HUB
+        </a>
+        
+        <div class="nav-links">
+            <% if (!loggedIn) { %>
+                <a href="/users/login">Log In</a>
+                <a href="/users/signup">Sign Up</a>
+            <% } else { %>
+                <a href="/jobs">Jobs</a>
+                <a href="/workshops">Workshops</a>
+                <a href="/volunteering">Volunteering</a>
+                <a href="/profile">Profile</a>
+            <% } %>
+        </div>
 
-    <div id="navBar">
-      <ul class="nav">
-        <li><a href="/" class="make-connect"><%= navigation.mainAnchor1 %></a></li>
-        <% if (!loggedIn) { %>
-          <li><a href="/users/login"><%= navigation.mainAnchor2 %></a></li>
-          <li><a href="/users/signup"><%= navigation.mainAnchor3 %></a></li>
-        <% } else { %>
-          <li><a href="/jobs"><%= navigation.mainAnchor4 %></a></li>
-          <li><a href="/workshops"><%= navigation.mainAnchor5 %></a></li>
-          <li><a href="/volunteering"><%= navigation.mainAnchor6 %></a></li>
-          <li><a href="/profile"><%= navigation.mainAnchor7 %></a></li>
-        <% } %>
-      </ul>
+        <button class="mobile-menu-button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
-  </nav>
-</header>
+</nav>
 
-<script src="/js/hamburger.js" defer></script>
+<script src="/js/navbar.js" defer></script>
